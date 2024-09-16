@@ -20,16 +20,16 @@ export default () => (
       // style={{ backgroundColor: "#000000" }}
     >
       <Div >
-        <Img alt="" src={img} style={{ width: "90%", height: "60vh" }} className="rounded-lg" />
+        <Img alt="" src={img} style={{ width: "90%", height: "60vh",borderRadius:"15px" }}  />
       </Div>
       <Div>
-        <Img alt="" src={img2} style={{ width: "90%", height: "60vh"  }}  className="rounded-lg"/>
+        <Img alt="" src={img2} style={{ width: "90%", height: "60vh" ,borderRadius:"15px" }}  />
       </Div>
       <Div>
-        <Img alt="" src={img3} style={{ width: "90%", height: "60vh" }} className="rounded-lg"/>
+        <Img alt="" src={img3} style={{ width: "90%", height: "60vh",borderRadius:"15px" }} />
       </Div>
       <Div>
-        <Img alt="" src={img4} style={{ width: "90%", height: "60vh" }} className="rounded-lg"/>
+        <Img alt="" src={img4} style={{ width: "90%", height: "60vh",borderRadius:"15px" }} />
       </Div>
     </Carousel>
   </Container>

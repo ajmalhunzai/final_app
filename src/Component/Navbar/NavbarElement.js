@@ -91,6 +91,7 @@ export const MoblieIcon = styled.div`
 
 export const NavMenu = styled.ul`
   display: flex;
+
   align-items: center;
   list-style: none;
   text-align: center;
