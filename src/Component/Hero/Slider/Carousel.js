@@ -1,8 +1,9 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
-import img from "../../images/mainSliderone.png";
-import img2 from "../../images/Gem-removebg-preview.png";
-import img3 from "../../images/logo-nav.png";
+import img from "../../../images/app-Banner.webp";
+import img2 from "../../../images/chopped & peeled app.webp";
+import img3 from "../../../images/Frozen Meat Web Banner - FTH_11zon-min.webp";
+import img4 from "../../../images/Rice Web Banner - FTH_11zon.webp";
 import { Container, Div, Img } from "./CarouselElements";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -18,14 +19,17 @@ export default () => (
       
       // style={{ backgroundColor: "#000000" }}
     >
-      <Div>
-        <Img alt="" src={img} style={{ width: "60%", height: "50vh" }} />
+      <Div >
+        <Img alt="" src={img} style={{ width: "90%", height: "60vh" }} className="rounded-lg" />
       </Div>
       <Div>
-        <Img alt="" src={img2} style={{ width: "100%", height: "60vh" }} />
+        <Img alt="" src={img2} style={{ width: "90%", height: "60vh"  }}  className="rounded-lg"/>
       </Div>
       <Div>
-        <Img alt="" src={img3} style={{ width: "60%", height: "50vh" }} />
+        <Img alt="" src={img3} style={{ width: "90%", height: "60vh" }} className="rounded-lg"/>
+      </Div>
+      <Div>
+        <Img alt="" src={img4} style={{ width: "90%", height: "60vh" }} className="rounded-lg"/>
       </Div>
     </Carousel>
   </Container>
