@@ -10,7 +10,7 @@ const Hero = () => {
     AOS.init();
   }, []);
   return (
-    <div className="relative w-full flex justify-center items-center py-10 pt-24">
+    <div className="relative w-full flex justify-center items-center py-10 pt-32">
       <Carousel />
     </div>
   );

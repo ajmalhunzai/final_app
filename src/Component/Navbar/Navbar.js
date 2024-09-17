@@ -48,7 +48,7 @@ const Navbar = ({ toggle }) => {
       <div
         className="fixed top-0 left-0 w-full z-20 bg-[#ffff] text-black  shadow-lg px-4 "
       >
-        <div className="flex justify-between items-center px-4 py-3 ">
+        <div className="flex justify-between items-center px-4 py-2 ">
           <div className="flex justify-between items-center">
 
             <button
@@ -56,15 +56,15 @@ const Navbar = ({ toggle }) => {
               onClick={() => setShipment(true)}
               className="-m-2.5 p-2.5 text-gray-700 "
             >
-              <RiMenu2Fill size={40} className="text-[#EC6B3C] w-8 h-8" />
+              <RiMenu2Fill size={30} className="text-[#EC6B3C] " />
             </button>
             <Link to="/" className="px-5">
-              <img src={logo} alt="logo" className="w-16 h-16 " />
+              <img src={logo} alt="logo" className="w-14 h-14 " />
             </Link>
           </div>
 
           <Link className="flex justify-center items-center no-underline text-black " to="/Cart">
-            <RiShoppingCart2Line size={40} className="text-[#EC6B3C] w8 h-8 " />
+            <RiShoppingCart2Line size={30} className="text-[#EC6B3C]  " />
             <span className="px-2">({totalCart})</span>
           </Link>
         </div>
@@ -99,7 +99,7 @@ const Navbar = ({ toggle }) => {
             leaveFrom="translate-x-0"
             leaveTo="-translate-x-full"
           >
-            <div className="fixed left-0 top-0 h-full w-full max-w-lg flex">
+            <div className="fixed left-0 top-0 h-full w-full max-w-sm flex">
               <div className="relative flex-1 bg-white shadow-lg p-4">
                 <div className="relative flex w-full flex-col overflow-hidden bg-white pb-8 pt-6 sm:rounded-lg sm:pb-6 lg:py-8">
                   <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8">

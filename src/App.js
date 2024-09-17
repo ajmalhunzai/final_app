@@ -38,12 +38,6 @@ function App() {
           <Route path="/Cart" element={<Cart />} />
           <Route exact path="/Gems" element={<Gems />} />
           <Route exact path="/Minerals" element={<Minerals />} />
-          <Route
-            exact
-            path="/favoriteCategories/:userId"
-            element={<FavCard />}
-          />
-          <Route exact path="/HomePage" element={<HomePage />} />
           <Route exact path="/chicken-&-meat" element={<Chickenmeat />} />
           <Route exact path="/fresh-fruits" element={<FreshFruits />} />
           <Route exact path="/chopped-&-peeled" element={<ChoppedPeeled />} />
@@ -53,9 +47,7 @@ function App() {
           <Route exact path="/spices-&-sauces" element={<SpicesSauces />} />
           <Route exact path="/rice-flour-&-sugar" element={<RiceFlourSugar />} />
           <Route exact path="/dates-&-dry-fruit" element={<DatesDryFruit />} />
-          <Route exact path="/SingleGem/:userId" element={<SingleGem />} />
-          <Route exact path="/SingleMineral" element={<SingleMineral />} />
-          <Route exact path="/MainContact" element={<MainContact />} />
+      
         </Routes>
       </Router>
     </>

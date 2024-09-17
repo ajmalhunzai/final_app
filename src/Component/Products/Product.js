@@ -92,7 +92,7 @@ const Product = () => {
               className="col-span-1 flex flex-col  p-6 rounded-lg bg-white text-center "
             >
               <Link to={person.to} className="flex flex-1 flex-col group  hover:text-[#00C851] ">
-                <img alt="" src={person.imageUrl} className="mx-auto h-48 w-48 flex-shrink-0 rounded-full" />
+                <img alt="" src={person.imageUrl} className="mx-auto h-44 w-44 flex-shrink-0 rounded-full" />
                 <h3 className="mt-6 text-md font-semibold text-gray-900 group-hover:text-[#00C851]  transition-colors duration-300 ease-in-out">{person.name}</h3>
               </Link>
             </li>
@@ -104,64 +104,3 @@ const Product = () => {
 };
 
 export default Product;
-
-
-
-<div className="flex justify-between w-[95%] lg:w-full lg:flex-col lg:justify-center lg:items-center">
-  {" "}
-  <GemsProduct>
-    <Link
-      to="/Gems"
-      style={{
-        textDecoration: "none",
-        color: "#FFFFFF",
-        overflow: "hidden",
-      }}
-    >
-      <div className="Card">
-        <div className="CardInner">
-          <div className="CardFront">
-            <h3>Gems </h3>
-            <div className="Image">
-              <img src={Gems} alt="Gems" />
-            </div>
-          </div>
-          <div className="CardBack">
-            <div>
-              <h3>Gems</h3>
-              <p>View Collection</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Link>
-  </GemsProduct>
-  <MineralsProduct>
-    <Link
-      to="/Minerals"
-      style={{
-        textDecoration: "none",
-        color: "#FFFFFF",
-        overflow: "hidden",
-      }}
-    >
-      <div className="Card">
-        <div className="CardInner">
-          <div className="CardFront">
-            {" "}
-            <h3>Mineral </h3>
-            <div className="Image">
-              <img src={Gems} alt="Gems" />
-            </div>
-          </div>
-          <div className="CardBack">
-            <div>
-              <h3>Minerals</h3>
-              <p>View Collection</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Link>
-  </MineralsProduct>
-</div>

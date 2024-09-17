@@ -5,7 +5,7 @@ import Hero from "../Hero/Hero";
 import Product from "../Products/Product";
 import Whatapp from "../Whatapp/Whatapp";
 
-import Uncategrical from "../Uncategrical/Uncategrical";
+import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 
 
 
@@ -13,13 +13,10 @@ const HomePage = () => {
   
   return (
     <>
-      {/* <Logoheader /> */}
       <Whatapp />
       <Hero />
       <Product />
-      <Uncategrical />
-      <Blog />
-      {/* <MyComponent /> */}
+      <FeaturedProducts />
       <Contact />
     </>
   );
