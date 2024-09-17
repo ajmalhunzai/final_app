@@ -138,14 +138,15 @@ const FeaturedProducts = () => {
           <div className="py-8">
             <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-7 xl:gap-x-8">
               {files.map((file) => (
-                <li className="py-4 rounded-lg bg-gray-300 overflow-hidden ">
+                <li className="py-4 rounded-lg bg-gray-300 overflow-hidden  hover:shadow-lg">
                   <div className=" w-44 h-28 flex justify-center items-center">
-                    <img alt="" src={file.imageUrl} className="w-full h-full object-cover " />
+                    <img alt="" src={file.imageUrl} className="w-44 h-28 object-cover " />
                   </div>
                 </li>
               ))}
             </ul>
           </div>
+          
         </div>
       </div>
 
