@@ -2,16 +2,12 @@ import React, { useContext, useState, Fragment } from "react";
 
 import { Createcart } from "../../Context/Context";
 import {
-  Nav,
+
   NavBarContainer,
-  MoblieIcon,
   NavMenu,
   NavItem,
   NavLinks,
-  NavLogo,
-  LogoImg,
-  FLexanv,
-  Cartlogo,
+
   NavlinkR,
 } from "./NavbarElement";
 
@@ -49,9 +45,9 @@ const Navbar = ({ toggle }) => {
   return (
     <>
       <div
-        className=" sticky top-0 z-10 bg-[#fffaf5] text-black md:relative  sm:relative"
+        className="fixed top-0 left-0 w-full z-20 bg-[#ffff] text-black  shadow-lg px-4 "
       >
-        <div className="flex justify-between items-center px-4 py-3 shadow-md">
+        <div className="flex justify-between items-center px-4 py-3 ">
           <button
             type="button"
             onClick={() => setShipment(true)}

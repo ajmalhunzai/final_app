@@ -10,13 +10,14 @@ import Cart from "./Component/Cart/Cart";
 
 import FavCard from "./Component/FavCard/FavCard";
 import MainContact from "./Component/MainContact/MainContact";
-
+import Navbar from "./Component/Navbar/Navbar";
 function App() {
 
 
   return (
-    <div className="App">
+    <>
       <Router>
+      <Navbar  />
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/Cart" element={<Cart />} />
@@ -33,7 +34,7 @@ function App() {
           <Route exact path="/MainContact" element={<MainContact />} />
         </Routes>
       </Router>
-    </div>
+    </>
   );
 }
 

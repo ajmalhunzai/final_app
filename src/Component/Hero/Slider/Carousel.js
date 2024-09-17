@@ -4,11 +4,11 @@ import img from "../../../images/app-Banner.webp";
 import img2 from "../../../images/chopped & peeled app.webp";
 import img3 from "../../../images/Frozen Meat Web Banner - FTH_11zon-min.webp";
 import img4 from "../../../images/Rice Web Banner - FTH_11zon.webp";
-import { Container, Div, Img } from "./CarouselElements";
+
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => (
-  <Container>
+  <div>
     <Carousel
       autoPlay
       showThumbs={false}
@@ -16,21 +16,20 @@ export default () => (
       infiniteLoop={true}
       interval={6000}
       showArrows={true}
-      
-      // style={{ backgroundColor: "#000000" }}
+ 
     >
-      <Div >
-        <Img alt="" src={img} style={{ width: "90%", height: "60vh",borderRadius:"15px" }}  />
-      </Div>
-      <Div>
-        <Img alt="" src={img2} style={{ width: "90%", height: "60vh" ,borderRadius:"15px" }}  />
-      </Div>
-      <Div>
-        <Img alt="" src={img3} style={{ width: "90%", height: "60vh",borderRadius:"15px" }} />
-      </Div>
-      <Div>
-        <Img alt="" src={img4} style={{ width: "90%", height: "60vh",borderRadius:"15px" }} />
-      </Div>
+      <div >
+        <img alt="" src={img} style={{ width: "95%", height: "60vh",borderRadius:"15px" }}  />
+      </div>
+      <div>
+        <img alt="" src={img2} style={{ width: "95%", height: "60vh" ,borderRadius:"15px" }}  />
+      </div>
+      <div>
+        <img alt="" src={img3} style={{ width: "95%", height: "60vh",borderRadius:"15px" }} />
+      </div>
+      <div>
+        <img alt="" src={img4} style={{ width: "95%", height: "60vh",borderRadius:"15px" }} />
+      </div>
     </Carousel>
-  </Container>
+  </div>
 );
