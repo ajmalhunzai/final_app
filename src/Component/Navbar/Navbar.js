@@ -11,12 +11,13 @@ import {
   NavlinkR,
 } from "./NavbarElement";
 
-import { RiMenu2Fill,RiShoppingCart2Line  } from "react-icons/ri";
+import { RiMenu2Fill, RiShoppingCart2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 import { Dialog, TransitionChild, Transition } from "@headlessui/react";
 
-import {  XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import logo from "../../images/logo.png"
 
 const Navbar = ({ toggle }) => {
   const {
@@ -48,15 +49,22 @@ const Navbar = ({ toggle }) => {
         className="fixed top-0 left-0 w-full z-20 bg-[#ffff] text-black  shadow-lg px-4 "
       >
         <div className="flex justify-between items-center px-4 py-3 ">
-          <button
-            type="button"
-            onClick={() => setShipment(true)}
-            className="-m-2.5 p-2.5 text-gray-700 "
-          >
-            <RiMenu2Fill size={40} className="text-[#EC6B3C] w-8 h-8" />
-          </button>
+          <div className="flex justify-between items-center">
+
+            <button
+              type="button"
+              onClick={() => setShipment(true)}
+              className="-m-2.5 p-2.5 text-gray-700 "
+            >
+              <RiMenu2Fill size={40} className="text-[#EC6B3C] w-8 h-8" />
+            </button>
+            <Link to="/" className="px-5">
+              <img src={logo} alt="logo" className="w-16 h-16 " />
+            </Link>
+          </div>
+
           <Link className="flex justify-center items-center no-underline text-black " to="/Cart">
-            <RiShoppingCart2Line  size={40} className="text-[#EC6B3C] w8 h-8 " />
+            <RiShoppingCart2Line size={40} className="text-[#EC6B3C] w8 h-8 " />
             <span className="px-2">({totalCart})</span>
           </Link>
         </div>
@@ -110,9 +118,9 @@ const Navbar = ({ toggle }) => {
                       <NavBarContainer>
                         <NavMenu className="flex-col">
                           <NavItem>
-                            <NavLinks to="Hero" smooth={400}>
+                            <NavlinkR to="/" smooth={400} onClick={() => setShipment(false)}>
                               Home{" "}
-                            </NavLinks>
+                            </NavlinkR>
                           </NavItem>
                           <NavItem>
                             <NavLinks to="Product" smooth={300}>

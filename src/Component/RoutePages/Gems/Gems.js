@@ -33,7 +33,7 @@ const Gems = () => {
   return (
     <Contianer>
       <Whatapp />
-      <GemNav />
+     
       <GemsWrapper>
         <GemStore>
           <div style={{ width: "70%" }}>
