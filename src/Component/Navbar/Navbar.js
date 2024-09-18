@@ -115,39 +115,20 @@ const Navbar = ({ toggle }) => {
 
                   <div className="px-6 py-4">
                     <div className="-mx-4 mt-8 sm:-mx-0">
-                      <NavBarContainer>
-                        <NavMenu className="flex-col">
-                          <NavItem>
-                            <NavlinkR to="/" smooth={400} onClick={() => setShipment(false)}>
-                              Home{" "}
-                            </NavlinkR>
-                          </NavItem>
-                          <NavItem>
-                            <NavLinks to="Product" smooth={300}>
-                              Products
-                            </NavLinks>
-                          </NavItem>
-                          <NavItem>
-                            <NavLinks to="Uncategrical" smooth={300}>
-                              Uncategrical
-                            </NavLinks>
-                          </NavItem>
-                          <NavItem>
-                            <NavLinks to="Blog" smooth={300}>
-                              Blog
-                            </NavLinks>
-                          </NavItem>
-                          <NavItem>
-                            <NavlinkR
-                              style={{ color: "#00000" }}
-                              to="MainContact"
-                              smooth={300}
-                            >
-                              Contact
-                            </NavlinkR>
-                          </NavItem>
-                        </NavMenu>
-                      </NavBarContainer>
+                      <ul>
+                        <li><Link to="/Minerals" 
+                          onClick={() => setShipment(false)}
+                        >Minerals</Link></li>
+                        <li><Link to="/chicken-&-meat"   onClick={() => setShipment(false)}>Chicken & Meat</Link></li>
+                        <li><Link to="/fresh-fruits"   onClick={() => setShipment(false)}>Fresh Fruits</Link></li>
+                        <li><Link to="/chopped-&-peeled"   onClick={() => setShipment(false)}>Chopped & Peeled</Link></li>
+                        <li><Link to="/fresh-vegetables"   onClick={() => setShipment(false)}>Fresh Vegetables</Link></li>
+                        <li><Link to="/frozen-snacks"   onClick={() => setShipment(false)}>Frozen Snacks</Link></li>
+                        <li><Link to="/dairy"   onClick={() => setShipment(false)}>Dairy</Link></li>
+                        <li><Link to="/spices-&-sauces"   onClick={() => setShipment(false)}>Spices & Sauces</Link></li>
+                        <li><Link to="/rice-flour-&-sugar"   onClick={() => setShipment(false)}>Rice, Flour & Sugar</Link></li>
+                        <li><Link to="/dates-&-dry-fruit"   onClick={() => setShipment(false)}>Dates & Dry Fruit</Link></li>
+                      </ul>
                     </div>
                   </div>
                 </div>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-scroll";
 
 export const Conatiner = styled.div`
-  background-color:#FDE7CB;
+
   padding: 70px 15px;
   @media (max-width: 600px) {
     padding: 0;

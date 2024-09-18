@@ -146,7 +146,6 @@ const FeaturedProducts = () => {
               ))}
             </ul>
           </div>
-          
         </div>
       </div>
 
