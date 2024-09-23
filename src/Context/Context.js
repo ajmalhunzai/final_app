@@ -54,6 +54,7 @@ const Statestore = ({ children }) => {
   const [specialOffer, setSpecailoffer] = useState([]);
 
   const [trending, setTrending] = useState([]);
+  const [chickenmeat, setChickenmeat] = useState([]);
 
   useEffect(() => {
     const dbRef = ref(db, "gems");
@@ -105,6 +106,19 @@ const Statestore = ({ children }) => {
       });
       setTrending(trending);
       console.log(trending)
+    
+    });
+
+    const dbrefchickenmeat = ref(db, "chicken-&-meat");
+    onValue(dbrefchickenmeat, (snapshot) => {
+      let chickenmeat = [];
+      snapshot.forEach((childSnapshot) => {
+        let keyname = childSnapshot.key;
+        let data = childSnapshot.val();
+        chickenmeat.push({ key: keyname, data: data });
+      });
+      setChickenmeat(chickenmeat);
+      console.log(chickenmeat)
     
     });
   }, []);
@@ -435,6 +449,13 @@ const Statestore = ({ children }) => {
         removeTrendingFromCart,
         clearCartTrending,
         getCartTotalTrending,
+
+
+
+        // chicken-&-meat
+        chickenmeat
+
+
       }}
     >
       {children}

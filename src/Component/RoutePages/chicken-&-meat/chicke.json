@@ -1,0 +1,34 @@
+{
+  "chicken-&-meat": {
+    "item1": {
+      "name": "Chicken Breast",
+      "price": 500,
+      "image": "https://example.com/chicken-breast.jpg",
+      "description": "Fresh boneless chicken breast, perfect for grilling."
+    },
+    "item2": {
+      "name": "Beef Steak",
+      "price": 1200,
+      "image": "https://example.com/beef-steak.jpg",
+      "description": "High-quality beef steak, ideal for grilling or pan-searing."
+    },
+    "item3": {
+      "name": "Lamb Chops",
+      "price": 1500,
+      "image": "https://example.com/lamb-chops.jpg",
+      "description": "Tender lamb chops, great for roasting or grilling."
+    },
+    "item4": {
+      "name": "Chicken Wings",
+      "price": 350,
+      "image": "https://example.com/chicken-wings.jpg",
+      "description": "Perfectly sized chicken wings for frying or baking."
+    },
+    "item5": {
+      "name": "Ground Beef",
+      "price": 800,
+      "image": "https://example.com/ground-beef.jpg",
+      "description": "Lean ground beef, perfect for burgers and meatballs."
+    }
+  }
+}
