@@ -73,7 +73,7 @@ const Gems = () => {
                           Add to cart
                         </button>
 
-                      <Link to={`/SingleGem/${product.key}`}  >View Details</Link>
+                     
                        
                       </div>
                     ) : (

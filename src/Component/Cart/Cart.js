@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Createcart } from "../../Context/Context";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
-import { BiArrowBack } from "react-icons/bi";
+
 
 const Cart = () => {
   const {
@@ -34,10 +34,36 @@ const Cart = () => {
     removeTrendingFromCart,
     clearCartTrending,
     getCartTotalTrending,
+
+
+    freshfruits,
+    addToCardfreshfruits,
+    freshfruitsCartItems,
+    removefreshfruitsFromCart,
+    clearCartfreshfruits,
+
+
+
+
+
+    getCartTotalchickemeat,
+    getCartTotalfreshfruits,
+    getCartTotalfreshvegetables,
+    getCartTotaldatesdryfruit,
+    getCartTotalspicessauces,
   } = useContext(Createcart);
 
-  // const Totalprices = getCartTotal.data.gemPrice;
 
+  // const totalCartPrice =
+  //   (getCartTotal() || 0) +
+  //   (getCartTotalmineral() || 0) +
+  //   (getCartTotaloffer() || 0) +
+  //   (getCartTotalTrending() || 0) +
+  //   (getCartTotalchickemeat() || 0) +
+  //   (getCartTotalfreshfruits() || 0) +
+  //   (getCartTotalfreshvegetables() || 0) +
+  //   (getCartTotalspicessauces() || 0) +
+  //   (getCartTotaldatesdryfruit() || 0);
 
   const notifyRemovedFromCart = (item) =>
     toast.error(`${item.title} removed from cart!`, {
@@ -86,26 +112,30 @@ const Cart = () => {
     removeTrendingFromCart(product);
     notifyRemovedFromCart(product);
   };
+  const handleRemoveFromCartfruits = (product) => {
+    removefreshfruitsFromCart(product);
+    notifyRemovedFromCart(product);
+  };
 
 
   return (
     <>
-      <div>
-        <Link
-          to="/"
-          style={{ textDecoration: "none", color: "black", fontWeight: "700" }}
-        >
-          <BiArrowBack /> <span>Home</span>
-        </Link>
+      <div className="pt-20">
+        <header className="bg-[#F8F9FA]">
+          <p className="flex justify-start items-center px-2">
+            <Link to="/" className="px-2 hover:text-[#00C851]" >Home</Link> /  <p className="px-2"> Cart</p>
+          </p>
+        </header>
+
         <h2>Gems Cart</h2>
         <div>
           {cartItems.map((item) => (
             <div key={item.id}>
               <div>
-               
+
                 <div>
                   <h1>{item.category}</h1>
-                 
+
                 </div>
               </div>
               <div>
@@ -116,7 +146,7 @@ const Cart = () => {
                 >
                   +
                 </button>
-              
+
                 <button
                   onClick={() => {
                     const cartItem = cartItems.find(
@@ -138,7 +168,7 @@ const Cart = () => {
         {cartItems.length > 0 ? (
           <div>
             <b>Total of Gems : $
-            {getCartTotal()}
+              {getCartTotal()}
             </b>
             <button
               onClick={() => {
@@ -189,6 +219,63 @@ const Cart = () => {
                       handleRemoveFromCartminearl(item);
                     } else {
                       removemineralFromCart(item);
+                    }
+                  }}
+                >
+                  -
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+        {mineralsCartItems.length > 0 ? (
+          <div>
+            <h1>Total: ${getCartTotalmineral()}</h1>
+            <button
+              onClick={() => {
+                clearCartmineral();
+                notifyCartCleared();
+              }}
+            >
+              Clear cart
+            </button>
+          </div>
+        ) : (
+          <h1>Your mineral cart is empty</h1>
+        )}
+      </div>
+
+      <div>
+        <h2> Carted Fresh Fruits  </h2>
+        <div>
+          {freshfruitsCartItems.map((item) => (
+            <div key={item.key}>
+              <div>
+                <img
+                  style={{ width: "50px" }}
+                  src={item.data.image}
+                  alt={item.price}
+                />
+
+              </div>
+              <div>
+                <button
+                  onClick={() => {
+                    addToCardfreshfruits(item);
+                  }}
+                >
+                  +
+                </button>
+                <p>{item.quantity}</p>
+                <button
+                  onClick={() => {
+                    const cartItem = freshfruits.find(
+                      (product) => product.key === item.key
+                    );
+                    if (cartItem.quantity === 1) {
+                      handleRemoveFromCartfruits(item);
+                    } else {
+                      removefreshfruitsFromCart(item);
                     }
                   }}
                 >
@@ -325,15 +412,34 @@ const Cart = () => {
               onClick={() => {
                 clearCartTrending();
                 notifyCartCleared();
+                clearCartfreshfruits()
               }}
             >
-              Clear cart
+              Clear Cart All
             </button>
           </div>
         ) : (
           <h1>Your Trending Items cart is empty</h1>
         )}
       </div>
+
+      <p>
+        subtotal
+        {/* {totalCartPrice} */}
+      </p>
+      <button onClick={() => {
+
+        notifyCartCleared();
+
+
+        clearCart()
+        clearCartmineral()
+        clearCartoffer()
+        clearCartTrending()
+        clearCartfreshfruits()
+      }}>
+        clear Cart all
+      </button>
     </>
   );
 };

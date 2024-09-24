@@ -1,15 +1,7 @@
 import React, { useContext, useState, Fragment } from "react";
 
 import { Createcart } from "../../Context/Context";
-import {
 
-  NavBarContainer,
-  NavMenu,
-  NavItem,
-  NavLinks,
-
-  NavlinkR,
-} from "./NavbarElement";
 
 import { RiMenu2Fill, RiShoppingCart2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
@@ -19,7 +11,7 @@ import { Dialog, TransitionChild, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../../images/logo.png"
 
-const Navbar = ({ toggle }) => {
+const Navbar = () => {
   const {
     // gems context functions //
     cartItems,
@@ -32,16 +24,26 @@ const Navbar = ({ toggle }) => {
 
     // Trending offer functions and nodes data
     trendingCartItems,
+    freshfruitsCartItems,
+ 
+   
   } = useContext(Createcart);
 
   const one = cartItems.length;
   const minerals = mineralsCartItems.length;
   const offer = offerCartItems.length;
   const trending = trendingCartItems.length;
-  const totalCart = one + minerals + offer + trending;
+  const frsihfruti = freshfruitsCartItems.length;
+  const totalCart = one + minerals + offer + trending+frsihfruti;
+
+
+
+
 
   const [shipmentOPen, setShipment] = useState(false);
 
+  
+// console.log("one",one)
 
   return (
     <>
