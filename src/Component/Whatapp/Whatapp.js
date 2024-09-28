@@ -19,7 +19,7 @@ const Whatapp = () => {
   return (
     <WhatappContainer>
       <ReactWhatsapp
-        number="923554741334"
+        number="923160891725"
         message="Type Message Here!"
         style={{
           background: "transparent",
