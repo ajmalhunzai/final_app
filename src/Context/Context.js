@@ -63,11 +63,11 @@ const Statestore = ({ children }) => {
       ? JSON.parse(localStorage.getItem("freshvegetablesCartItems"))
       : []
   );
-  // spicessauces products in local storage
+  // herbs products in local storage
 
-  const [spicessaucesCartItems, setspicessaucesCartItems] = useState(
-    localStorage.getItem("spicessaucesCartItems")
-      ? JSON.parse(localStorage.getItem("spicessaucesCartItems"))
+  const [herbsCartItems, setHerbsCartItems] = useState(
+    localStorage.getItem("herbsCartItems")
+      ? JSON.parse(localStorage.getItem("herbsCartItems"))
       : []
   );
   // datesdryfruit products in local storage
@@ -82,17 +82,13 @@ const Statestore = ({ children }) => {
 
 
 
-  const [records, setRecords] = useState([]);
 
-  const [recordtwo, setRecordtwo] = useState([]);
-
-  const [specialOffer, setSpecailoffer] = useState([]);
 
   const [trending, setTrending] = useState([]);
   const [chickenmeat, setChickenmeat] = useState([]);
   const [freshfruits, setFreshfruits] = useState([]);
   const [freshvegetables, setFreshvegetables] = useState([]);
-  const [spicessauces, setSpicessauces] = useState([]);
+  const [herbs, setHerbs] = useState([]);
   const [datesdryfruit, setDatesdryfruit] = useState([]);
 
 
@@ -105,39 +101,17 @@ const Statestore = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const dbRef = ref(db, "gems");
-        const dbRef1 = ref(db, "minerals");
-        const dbrefoffer = ref(db, "specialOffer");
+       
         const dbreftrend = ref(db, "trendingProducts");
         const dbrefchickenmeat = ref(db, "chicken-&-meat");
         const dbreffreshfruits = ref(db, "fresh-fruits");
         const dbreffreshvegetables = ref(db, "fresh-vegetables");
-        const dbrefspicessauces = ref(db, "spices-&-sauces");
+        const dbrefherbs = ref(db, "herbs");
         const dbrefdatesdryfruit = ref(db, "dates-&-dry-fruit");
 
         // Parallel fetching using Promises for faster data retrieval
         await Promise.all([
-          onValue(dbRef, (snapshot) => {
-            let records = [];
-            snapshot.forEach((childSnapshot) => {
-              records.push({ key: childSnapshot.key, data: childSnapshot.val() });
-            });
-            setRecords(records);
-          }),
-          onValue(dbRef1, (snapshot) => {
-            let recordtwo = [];
-            snapshot.forEach((childSnapshot) => {
-              recordtwo.push({ key: childSnapshot.key, data: childSnapshot.val() });
-            });
-            setRecordtwo(recordtwo);
-          }),
-          onValue(dbrefoffer, (snapshot) => {
-            let offer = [];
-            snapshot.forEach((childSnapshot) => {
-              offer.push({ key: childSnapshot.key, data: childSnapshot.val() });
-            });
-            setSpecailoffer(offer);
-          }),
+         
           onValue(dbreftrend, (snapshot) => {
             let trending = [];
             snapshot.forEach((childSnapshot) => {
@@ -166,12 +140,12 @@ const Statestore = ({ children }) => {
             });
             setFreshvegetables(freshvegetables);
           }),
-          onValue(dbrefspicessauces, (snapshot) => {
-            let spicessauces = [];
+          onValue(dbrefherbs, (snapshot) => {
+            let herbs = [];
             snapshot.forEach((childSnapshot) => {
-              spicessauces.push({ key: childSnapshot.key, data: childSnapshot.val() });
+              herbs.push({ key: childSnapshot.key, data: childSnapshot.val() });
             });
-            setSpicessauces(spicessauces);
+            setHerbs(herbs);
           }),
           onValue(dbrefdatesdryfruit, (snapshot) => {
             let datesdryfruit = [];
@@ -340,26 +314,26 @@ const Statestore = ({ children }) => {
   };
 
 
-  const addToCartSpicesSauces = (item) => {
-    const isItemInCart = spicessaucesCartItems.find(
+  const addToCartherbs = (item) => {
+    const isItemInCart = herbsCartItems.find(
       (cartItem) => cartItem.key === item.key
     );
 
     let updatedCartItems;
 
     if (isItemInCart) {
-      updatedCartItems = spicessaucesCartItems.map((cartItem) =>
+      updatedCartItems = herbsCartItems.map((cartItem) =>
         cartItem.key === item.key
           ? { ...cartItem, quantity: cartItem.quantity + 1 }
           : cartItem
       );
     } else {
-      updatedCartItems = [...spicessaucesCartItems, { ...item, quantity: 1 }];
+      updatedCartItems = [...herbsCartItems, { ...item, quantity: 1 }];
     }
 
-    setspicessaucesCartItems(updatedCartItems);
+    setHerbsCartItems(updatedCartItems);
     localStorage.setItem(
-      "spicessaucesCartItems",
+      "herbsCartItems",
       JSON.stringify(updatedCartItems)
     );
   };
@@ -536,18 +510,18 @@ const Statestore = ({ children }) => {
     }
   };
 
-  const removespicessaucesFromCart = (item) => {
-    const isItemInCart = spicessaucesCartItems.find(
+  const removeherbsFromCart = (item) => {
+    const isItemInCart = herbsCartItems.find(
       (cartItem) => cartItem.key === item.key
     );
   
     if (isItemInCart.quantity === 1) {
-      setspicessaucesCartItems(
-        spicessaucesCartItems.filter((cartItem) => cartItem.key !== item.key)
+      setHerbsCartItems(
+        herbsCartItems.filter((cartItem) => cartItem.key !== item.key)
       );
     } else {
-      setspicessaucesCartItems(
-        spicessaucesCartItems.map((cartItem) =>
+      setHerbsCartItems(
+        herbsCartItems.map((cartItem) =>
           cartItem.key === item.key
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
@@ -588,9 +562,9 @@ const getCartTotalfreshvegetables = () => {
   );
 };
 
-// Function to get total price for spicessauces
-const getCartTotalspicessauces = () => {
-  return spicessaucesCartItems.reduce(
+// Function to get total price for herbs
+const getCartTotalherbs = () => {
+  return herbsCartItems.reduce(
     (total, item) => total + item.data.price * item.quantity,
     0
   );
@@ -645,9 +619,9 @@ const getCartTotaldatesdryfruit = () => {
     setfreshvegetablesCartItems([]);
     localStorage.removeItem("freshvegetablesCartItems");
   };
-  const clearCartSpicesSauces = () => {
-    setspicessaucesCartItems([]);
-    localStorage.removeItem("spicessaucesCartItems");
+  const clearCartherbs = () => {
+    setHerbsCartItems([]);
+    localStorage.removeItem("herbsCartItems");
   };
   const clearCartDatesDryFruits = () => {
     setdatesdryfruitCartItems([]);
@@ -745,9 +719,9 @@ const getCartTotaldatesdryfruit = () => {
 if (freshvegetablesData) {
   setfreshvegetablesCartItems(JSON.parse(freshvegetablesData));
 }
-const spicessaucesData = localStorage.getItem("spicessaucesCartItems");
-if (spicessaucesData) {
-  setspicessaucesCartItems(JSON.parse(spicessaucesData));
+const herbsData = localStorage.getItem("herbsCartItems");
+if (herbsData) {
+  setHerbsCartItems(JSON.parse(herbsData));
 }
 const datesdryfruitData = localStorage.getItem("datesdryfruitCartItems");
 if (datesdryfruitData) {
@@ -769,31 +743,11 @@ if (datesdryfruitData) {
     <Createcart.Provider
       value={{
         // gems functions and node data //
-        records,
-        cartItems,
-        addToCart,
-        removeFromCart,
-        clearCart,
-        getCartTotal,
+        
 
         loading,
 
-        // minerals functions and node data //
-        recordtwo,
-        mineralsCartItems,
-        addToMineralsCart,
-        removemineralFromCart,
-        clearCartmineral,
-        getCartTotalmineral,
-
-        // special offer functions and node data
-        specialOffer,
-        offerCartItems,
-        addToCardOffer,
-        removeofferFromCart,
-        clearCartoffer,
-        getCartTotaloffer,
-
+      
         // Trending offer functions and nodes data
         trending,
         trendingCartItems,
@@ -830,13 +784,13 @@ if (datesdryfruitData) {
         getCartTotalfreshvegetables,
         removefreshvegetablesFromCart,
 
-        //spicessauces
-        spicessauces,
-        addToCartSpicesSauces,
-        spicessaucesCartItems,
-        clearCartSpicesSauces,
-        getCartTotalspicessauces,
-        removespicessaucesFromCart,
+        //herbs
+        herbs,
+        addToCartherbs,
+        herbsCartItems,
+        clearCartherbs,
+        getCartTotalherbs,
+        removeherbsFromCart,
 
 
         //datesdryfruit
@@ -857,129 +811,3 @@ if (datesdryfruitData) {
   );
 };
 export default Statestore;
-
-
-
-
-
-
-
-
-
-
-// useEffect(() => {
-//   const dbRef = ref(db, "gems");
-
-//   onValue(dbRef, (snapshot) => {
-//     let records = [];
-
-//     snapshot.forEach((childSnapshot) => {
-//       let keyname = childSnapshot.key;
-//       let data = childSnapshot.val();
-//       records.push({ key: keyname, data: data });
-//     });
-//     setRecords(records);
-
-//     console.log("records", records)
-
-
-
-
-//   });
-
-//   const dbRef1 = ref(db, "minerals");
-//   onValue(dbRef1, (snapshot) => {
-//     let recordtwo = [];
-//     snapshot.forEach((childSnapshot) => {
-//       let keyname = childSnapshot.key;
-//       let data = childSnapshot.val();
-//       recordtwo.push({ key: keyname, data: data });
-//     });
-//     setRecordtwo(recordtwo);
-//   });
-
-//   const dbrefoffer = ref(db, "specialOffer");
-//   onValue(dbrefoffer, (snapshot) => {
-//     let offer = [];
-//     snapshot.forEach((childSnapshot) => {
-//       let keyname = childSnapshot.key;
-//       let data = childSnapshot.val();
-//       offer.push({ key: keyname, data: data });
-//     });
-//     setSpecailoffer(offer);
-//   });
-
-//   const dbreftrend = ref(db, "trendingProducts");
-//   onValue(dbreftrend, (snapshot) => {
-//     let trending = [];
-//     snapshot.forEach((childSnapshot) => {
-//       let keyname = childSnapshot.key;
-//       let data = childSnapshot.val();
-//       trending.push({ key: keyname, data: data });
-//     });
-//     setTrending(trending);
-//     console.log(trending)
-
-//   });
-
-//   const dbrefchickenmeat = ref(db, "chicken-&-meat");
-//   onValue(dbrefchickenmeat, (snapshot) => {
-//     let chickenmeat = [];
-//     snapshot.forEach((childSnapshot) => {
-//       let keyname = childSnapshot.key;
-//       let data = childSnapshot.val();
-//       chickenmeat.push({ key: keyname, data: data });
-//     });
-//     setChickenmeat(chickenmeat);
-
-
-//   });
-//   const dbreffreshfruits = ref(db, "fresh-fruits");
-//   onValue(dbreffreshfruits, (snapshot) => {
-//     let freshfruits = [];
-//     snapshot.forEach((childSnapshot) => {
-//       let keyname = childSnapshot.key;
-//       let data = childSnapshot.val();
-//       freshfruits.push({ key: keyname, data: data });
-//     });
-//     setFreshfruits(freshfruits);
-//     console.log(chickenmeat)
-
-//   });
-//   const dbreffreshvegetables = ref(db, "fresh-vegetables");
-//   onValue(dbreffreshvegetables, (snapshot) => {
-//     let freshvegetables = [];
-//     snapshot.forEach((childSnapshot) => {
-//       let keyname = childSnapshot.key;
-//       let data = childSnapshot.val();
-//       freshvegetables.push({ key: keyname, data: data });
-//     });
-//     setFreshvegetables(freshvegetables);
-
-
-//   });
-//   const dbrefspicessauces = ref(db, "spices-&-sauces");
-//   onValue(dbrefspicessauces, (snapshot) => {
-//     let spicessauces = [];
-//     snapshot.forEach((childSnapshot) => {
-//       let keyname = childSnapshot.key;
-//       let data = childSnapshot.val();
-//       spicessauces.push({ key: keyname, data: data });
-//     });
-//     setSpicessauces(spicessauces);
-
-
-//   });
-//   const dbrefdatesdryfruit = ref(db, "dates-&-dry-fruit");
-//   onValue(dbrefdatesdryfruit, (snapshot) => {
-//     let datesdryfruit = [];
-//     snapshot.forEach((childSnapshot) => {
-//       let keyname = childSnapshot.key;
-//       let data = childSnapshot.val();
-//       datesdryfruit.push({ key: keyname, data: data });
-//     });
-//     setDatesdryfruit(datesdryfruit);
-
-
-//   });
-// }, []);

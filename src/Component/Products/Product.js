@@ -23,11 +23,11 @@ const Product = () => {
 
 
   const people = [
-    {
-      to: "chicken-&-meat",
-      name: 'Chicken Meat',
-      imageUrl: 'https://apt.farmtohome.com.pk/banners/8.webp',
-    },
+    // {
+    //   to: "chicken-&-meat",
+    //   name: 'Chicken Meat',
+    //   imageUrl: 'https://apt.farmtohome.com.pk/banners/8.webp',
+    // },
     {
       to: "fresh-fruits",
       name: 'Fresh Fruits',
@@ -44,28 +44,28 @@ const Product = () => {
       to: "chopped-&-peeled",
       imageUrl: 'https://apt.farmtohome.com.pk/banners/Chooped.webp',
     },
+    // {
+    //   name: 'Frozen Snacks',
+    //   to: "frozen-snacks",
+    //   imageUrl:
+    //     'https://apt.farmtohome.com.pk/banners/5.webp',
+    // },
     {
-      name: 'Frozen Snacks',
-      to: "frozen-snacks",
-      imageUrl:
-        'https://apt.farmtohome.com.pk/banners/5.webp',
-    },
-    {
-      name: 'Dairy',
+      name: 'Dairy and Jems',
       to: "dairy",
       imageUrl:
         'https://apt.farmtohome.com.pk/banners/dairyy.webp',
     },
     {
-      name: 'Spices & Sauces',
+      name: 'Herbs ',
       to: "spices-&-sauces",
       imageUrl: 'https://apt.farmtohome.com.pk/banners/Spices new.webp',
     },
-    {
-      name: 'Rice,Flour & Sugar',
-      to: "rice-flour-&-sugar",
-      imageUrl:'https://apt.farmtohome.com.pk/banners/rice 2.webp',
-    },
+    // {
+    //   name: 'Rice,Flour & Sugar',
+    //   to: "rice-flour-&-sugar",
+    //   imageUrl:'https://apt.farmtohome.com.pk/banners/rice 2.webp',
+    // },
     {
       name: 'Dates & Dry Fruit',
       to: "dates-&-dry-fruit",

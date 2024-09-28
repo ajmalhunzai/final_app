@@ -13,14 +13,7 @@ import logo from "../../images/logo.png"
 
 const Navbar = () => {
   const {
-    // gems context functions //
-    cartItems,
-
-    // minerals context functions //
-    mineralsCartItems,
-
-    // special offer functions and node data
-    offerCartItems,
+ 
 
     // Trending offer functions and nodes data
     trendingCartItems,
@@ -29,12 +22,10 @@ const Navbar = () => {
    
   } = useContext(Createcart);
 
-  const one = cartItems.length;
-  const minerals = mineralsCartItems.length;
-  const offer = offerCartItems.length;
+  
   const trending = trendingCartItems.length;
   const frsihfruti = freshfruitsCartItems.length;
-  const totalCart = one + minerals + offer + trending+frsihfruti;
+  const totalCart =  trending+frsihfruti;
 
 
 
@@ -48,7 +39,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className="fixed top-0 left-0 w-full z-20 bg-[#ffff] text-black  shadow-lg px-4 "
+        className="fixed top-0 left-0 w-full z-50 bg-[#ffff] text-black  shadow-lg px-4 "
       >
         <div className="flex justify-between items-center px-4 py-2 ">
           <div className="flex justify-between items-center">
@@ -118,10 +109,8 @@ const Navbar = () => {
                   <div className="px-6 py-4">
                     <div className="-mx-4 mt-8 sm:-mx-0">
                       <ul>
-                        <li><Link to="/Minerals" 
-                          onClick={() => setShipment(false)}
-                        >Minerals</Link></li>
-                        <li><Link to="/chicken-&-meat"   onClick={() => setShipment(false)}>Chicken & Meat</Link></li>
+                        
+                      
                         <li><Link to="/fresh-fruits"   onClick={() => setShipment(false)}>Fresh Fruits</Link></li>
                         <li><Link to="/chopped-&-peeled"   onClick={() => setShipment(false)}>Chopped & Peeled</Link></li>
                         <li><Link to="/fresh-vegetables"   onClick={() => setShipment(false)}>Fresh Vegetables</Link></li>

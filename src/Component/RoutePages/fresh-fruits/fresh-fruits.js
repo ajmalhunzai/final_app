@@ -34,7 +34,7 @@ const FreshFruits = () => {
           {freshfruits.map((person) => (
             <li
               key={person.email}
-              className="col-span-1  min-w-[100px]  relative flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow overflow-hidden"
+              className="col-span-1  w-[150px] h-[20vh]  relative flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow overflow-hidden"
             >
               <div className="flex flex-1 flex-col relative">
                 <img
@@ -43,7 +43,7 @@ const FreshFruits = () => {
                   className="absolute z-10 w-full h-full object-cover"
                 />
 
-                <div className="relative z-20 bg-black bg-opacity-50   p-4">
+                <div className="relative z-20 bg-black bg-opacity-50 w-[150px] h-[20vh]  p-4">
 
                   <div>
 
