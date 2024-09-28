@@ -33,7 +33,7 @@ const Contact = () => {
           <p className="font-bold">Contact</p>
         </div>
       </div>
-      {/* <div className="flex justify-center flex-col mb-8 md:w-1/2">
+      <div className="flex justify-center flex-col mb-8 md:w-1/2">
         <h3>Contact</h3>
         <div className="flex flex-col">
           <a href="mailto:asimmir1998@gmail.com" target="_blank" className="text-lg flex items-center text-gray-600" rel="noreferrer">
@@ -62,10 +62,10 @@ const Contact = () => {
             <CiTwitter />
           </a>
         </div>
-      </div> */}
+      </div>
     </div>
     <div className="mt-4 text-center text-lg md:text-sm">
-      &copy; FiledstoFork {new Date().getFullYear()}. All Rights Reserved.
+      &copy; Himalayas {new Date().getFullYear()}. All Rights Reserved.
     </div>
   </div>
   );
