@@ -5,6 +5,8 @@ import logo from "../images/logo-nav.png";
 import { db } from "../firebase";
 import { onValue, ref } from "firebase/database";
 import { CiCirclePlus } from "react-icons/ci";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import { Link, useParams } from "react-router-dom";
 import { IoIosArrowRoundForward } from "react-icons/io";
@@ -30,6 +32,11 @@ const FeaturedProducts = () => {
 
 
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    AOS.init();
+  }, []);
 
 
 
@@ -79,6 +86,9 @@ const FeaturedProducts = () => {
                 {trending.map((person) => (
                   <li
                     key={person.email}
+                    data-aos="flip-left"
+                    data-aos-easing="ease-out-cubic"
+                    data-aos-duration="2000"
                     className="col-span-1 w-[150px] h-[20vh] relative flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow overflow-hidden"
                   >
                     <Link to={person.data.link} className="flex flex-1 flex-col relative">
