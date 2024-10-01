@@ -51,14 +51,14 @@ const Product = () => {
     //     'https://apt.farmtohome.com.pk/banners/5.webp',
     // },
     {
-      name: 'Dairy and Jems',
+      name: 'Dairy and Jam',
       to: "dairy",
       imageUrl:
         'https://apt.farmtohome.com.pk/banners/dairyy.webp',
     },
     {
       name: 'Herbs ',
-      to: "spices-&-sauces",
+      to: "herbs",
       imageUrl: 'https://apt.farmtohome.com.pk/banners/Spices new.webp',
     },
     // {

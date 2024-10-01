@@ -14,26 +14,6 @@ const Statestore = ({ children }) => {
 
 
 
-  // gems store in local storage
-  const [cartItems, setCartItems] = useState(
-    localStorage.getItem("cartItems")
-      ? JSON.parse(localStorage.getItem("cartItems"))
-      : []
-  );
-
-  // minerals store in local storage
-  const [mineralsCartItems, setMineralsCartItems] = useState(
-    localStorage.getItem("mineralsCartItems")
-      ? JSON.parse(localStorage.getItem("mineralsCartItems"))
-      : []
-  );
-
-  // specail offer in local storage
-  const [offerCartItems, setOfferCartItems] = useState(
-    localStorage.getItem("offerCartItems")
-      ? JSON.parse(localStorage.getItem("offerCartItems"))
-      : []
-  );
 
   // Trending products in local storage
 
@@ -44,16 +24,17 @@ const Statestore = ({ children }) => {
   );
   // chickenmeat products in local storage
 
-  const [chickenmeatCartItems, setchickenmeatCartItems] = useState(
-    localStorage.getItem("chickenmeatCartItems")
-      ? JSON.parse(localStorage.getItem("chickenmeatCartItems"))
-      : []
-  );
+
   // freshfruits products in local storage
 
   const [freshfruitsCartItems, setfreshfruitsCartItems] = useState(
     localStorage.getItem("freshfruitsCartItems")
       ? JSON.parse(localStorage.getItem("freshfruitsCartItems"))
+      : []
+  );
+  const [choppedpeeledCartItems, setchoppedpeeledCartItems] = useState(
+    localStorage.getItem("choppedpeeledCartItems")
+      ? JSON.parse(localStorage.getItem("choppedpeeledCartItems"))
       : []
   );
   // freshvegetables products in local storage
@@ -85,11 +66,12 @@ const Statestore = ({ children }) => {
 
 
   const [trending, setTrending] = useState([]);
-  const [chickenmeat, setChickenmeat] = useState([]);
+  
   const [freshfruits, setFreshfruits] = useState([]);
   const [freshvegetables, setFreshvegetables] = useState([]);
   const [herbs, setHerbs] = useState([]);
   const [datesdryfruit, setDatesdryfruit] = useState([]);
+  const [choppedpeeled, setChoppedpeeled] = useState([]);
 
 
 
@@ -103,7 +85,8 @@ const Statestore = ({ children }) => {
       try {
        
         const dbreftrend = ref(db, "trendingProducts");
-        const dbrefchickenmeat = ref(db, "chicken-&-meat");
+        const dbrefchoppedpeeled = ref(db, "chopped-&-peeled");
+    
         const dbreffreshfruits = ref(db, "fresh-fruits");
         const dbreffreshvegetables = ref(db, "fresh-vegetables");
         const dbrefherbs = ref(db, "herbs");
@@ -119,13 +102,17 @@ const Statestore = ({ children }) => {
             });
             setTrending(trending);
           }),
-          onValue(dbrefchickenmeat, (snapshot) => {
-            let chickenmeat = [];
+          
+          onValue(dbrefchoppedpeeled, (snapshot) => {
+            let choppedpeeled = [];
             snapshot.forEach((childSnapshot) => {
-              chickenmeat.push({ key: childSnapshot.key, data: childSnapshot.val() });
+              choppedpeeled.push({ key: childSnapshot.key, data: childSnapshot.val() });
             });
-            setChickenmeat(chickenmeat);
+
+            console.log("choppedpeeled",choppedpeeled)
+            setChoppedpeeled(choppedpeeled);
           }),
+          
           onValue(dbreffreshfruits, (snapshot) => {
             let freshfruits = [];
             snapshot.forEach((childSnapshot) => {
@@ -169,63 +156,10 @@ const Statestore = ({ children }) => {
   // This function, addToCart, is responsible for adding items to the cart. It first checks if the item already exists in the
   // cart. If it does, the item's quantity is increased; otherwise, a new item with a quantity of 1 is added
 
-  // gems add to cart
-  const addToCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.key === item.key);
 
-    if (isItemInCart) {
-      setCartItems(
-        cartItems.map((cartItem) =>
-          cartItem.key === item.key
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...item, quantity: 1 }]);
-    }
-  };
 
-  // minerals  add to cart
-  const addToMineralsCart = (item) => {
-    const isItemInCart = mineralsCartItems.find(
-      (cartItem) => cartItem.key === item.key
-    );
 
-    if (isItemInCart) {
-      setMineralsCartItems(
-        mineralsCartItems.map((cartItem) =>
-          cartItem.key === item.key
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
-      );
-    } else {
-      setMineralsCartItems([...mineralsCartItems, { ...item, quantity: 1 }]);
-    }
-  };
-
-  // Specail offer add to cart
-  const addToCardOffer = (item) => {
-    const isItemInCart = offerCartItems.find(
-      (cartItem) => cartItem.key === item.key
-    );
-
-    if (isItemInCart) {
-      setOfferCartItems(
-        offerCartItems.map((cartItem) =>
-          cartItem.key === item.key
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
-      );
-    } else {
-      setOfferCartItems([...offerCartItems, { ...item, quantity: 1 }]);
-    }
-
-    localStorage.setItem("offerCartItems", JSON.stringify(offerCartItems));
-  };
-
+ 
   // Trending Product add to cart
   const addToCardTrending = (item) => {
     const isItemInCart = trendingCartItems.find(
@@ -245,25 +179,26 @@ const Statestore = ({ children }) => {
     }
     localStorage.setItem("trendingCartItems", JSON.stringify(trendingCartItems));
   };
-
-  const addToCardchickenmeat = (item) => {
-    const isItemInCart = chickenmeat.find(
+  const addToCardChoppedpeeled = (item) => {
+    const isItemInCart = choppedpeeledCartItems.find(
       (cartItem) => cartItem.key === item.key
     );
 
     if (isItemInCart) {
-      setchickenmeatCartItems(
-        chickenmeatCartItems.map((cartItem) =>
+      setchoppedpeeledCartItems(
+        choppedpeeledCartItems.map((cartItem) =>
           cartItem.key === item.key
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         )
       );
     } else {
-      setchickenmeatCartItems([...chickenmeatCartItems, { ...item, quantity: 1 }]);
+      setchoppedpeeledCartItems([...choppedpeeledCartItems, { ...item, quantity: 1 }]);
     }
-    localStorage.setItem("chickenmeatCartItems", JSON.stringify(chickenmeatCartItems));
+    localStorage.setItem("choppedpeeledCartItems", JSON.stringify(choppedpeeledCartItems));
   };
+
+  
   const addToCardfreshfruits = (item) => {
     const isItemInCart = freshfruitsCartItems.find(
       (cartItem) => cartItem.key === item.key
@@ -367,67 +302,9 @@ const Statestore = ({ children }) => {
 
   
 
-  // gems remove from cart
-  const removeFromCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.key === item.key);
+  
 
-    if (isItemInCart.quantity === 1) {
-      setCartItems(cartItems.filter((cartItem) => cartItem.key !== item.key));
-    } else {
-      setCartItems(
-        cartItems.map((cartItem) =>
-          cartItem.key === item.key
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        )
-      );
-    }
-  };
-
-  // minerals remove from cart
-  const removemineralFromCart = (item) => {
-    const isItemInCart = mineralsCartItems.find(
-      (cartItem) => cartItem.key === item.key
-    );
-
-    if (isItemInCart.quantity === 1) {
-      setMineralsCartItems(
-        mineralsCartItems.filter((cartItem) => cartItem.key !== item.key)
-      );
-    } else {
-      setMineralsCartItems(
-        mineralsCartItems.map((cartItem) =>
-          cartItem.key === item.key
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        )
-      );
-    }
-  };
-
-  //  Specail offer remove from cart
-  const removeofferFromCart = (item) => {
-    const isItemInCart = offerCartItems.find(
-      (cartItem) => cartItem.key === item.key
-    );
-
-    if (isItemInCart.quantity === 1) {
-      setOfferCartItems(
-        offerCartItems.filter((cartItem) => cartItem.key !== item.key)
-      );
-    } else {
-      setOfferCartItems(
-        offerCartItems.map((cartItem) =>
-          cartItem.key === item.key
-            ? {
-              ...cartItem, quantity: cartItem.quantity - 1
-
-            }
-            : cartItem
-        )
-      );
-    }
-  };
+  
 
   // Trending producct remove from card
 
@@ -451,18 +328,18 @@ const Statestore = ({ children }) => {
     }
   };
 
-  const removechickenmeatFromCart = (item) => {
-    const isItemInCart = chickenmeatCartItems.find(
+  const removechoppedpeeledFromCart = (item) => {
+    const isItemInCart = choppedpeeledCartItems.find(
       (cartItem) => cartItem.key === item.key
     );
 
     if (isItemInCart.quantity === 1) {
-      setchickenmeatCartItems(
-        chickenmeatCartItems.filter((cartItem) => cartItem.key !== item.key)
+      setchoppedpeeledCartItems(
+        choppedpeeledCartItems.filter((cartItem) => cartItem.key !== item.key)
       );
     } else {
-      setchickenmeatCartItems(
-        chickenmeatCartItems.map((cartItem) =>
+      setchoppedpeeledCartItems(
+        choppedpeeledCartItems.map((cartItem) =>
           cartItem.key === item.key
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
@@ -470,6 +347,8 @@ const Statestore = ({ children }) => {
       );
     }
   };
+
+ 
   const removefreshfruitsFromCart = (item) => {
     const isItemInCart = freshfruitsCartItems.find(
       (cartItem) => cartItem.key === item.key
@@ -561,6 +440,12 @@ const getCartTotalfreshvegetables = () => {
     0
   );
 };
+const getCartTotalchoppedpeeled = () => {
+  return choppedpeeledCartItems.reduce(
+    (total, item) => total + item.data.price * item.quantity,
+    0
+  );
+};
 
 // Function to get total price for herbs
 const getCartTotalherbs = () => {
@@ -581,37 +466,20 @@ const getCartTotaldatesdryfruit = () => {
 
   // simply empties the cart by setting the cartItems state to an empty array.
 
-  // gems cart clear
-  const clearCart = () => {
-    setCartItems([]);
-    localStorage.removeItem("cartItems");
 
-  };
-
-  // minerals cart clear
-  const clearCartmineral = () => {
-    setMineralsCartItems([]);
-    localStorage.removeItem("mineralsCartItems");
-
-  };
-
-  // specail offer clear cart
-  const clearCartoffer = () => {
-    setOfferCartItems([]);
-    localStorage.removeItem("offerCartItems");
-  };
 
   // Trending product clear cart
   const clearCartTrending = () => {
     setTrendingCartItems([]);
     localStorage.removeItem("trendingCartItems");
   };
-  const clearCartchickenmeat = () => {
-    setchickenmeatCartItems([]);
-    localStorage.removeItem("chickenmeatCartItems");
-  };
+ 
   const clearCartfreshfruits = () => {
     setfreshfruitsCartItems([]);
+    localStorage.removeItem("freshfruitsCartItems");
+  };
+  const clearCartchoppedpeeled = () => {
+    setchoppedpeeledCartItems([]);
     localStorage.removeItem("freshfruitsCartItems");
   };
 
@@ -633,30 +501,9 @@ const getCartTotaldatesdryfruit = () => {
 
   // calculates the total cost of the items in the cart by iterating through each item and multiplying its price by its quantity.
 
-  // gem total cart
-  const getCartTotal = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.data.gemPrice * item.quantity,
-      0
-    );
-  };
 
-  // minerals total  in cart
-  const getCartTotalmineral = () => {
-    return mineralsCartItems.reduce(
-      (total, item) => total + item.data.mineralPrice * item.quantity,
-      0
-    );
-  };
 
-  // offer totol in cart
 
-  const getCartTotaloffer = () => {
-    return offerCartItems.reduce(
-      (total, item) => total + item.data.offerPrice * item.quantity,
-      0
-    );
-  };
 
 
   
@@ -666,12 +513,9 @@ const getCartTotaldatesdryfruit = () => {
       0
     );
   };
-  const getCartTotalchickemeat = () => {
-    return chickenmeatCartItems.reduce(
-      (total, item) => total + item.data.price * item.quantity,
-      0
-    );
-  };
+ 
+
+ 
   const getCartTotalfreshfruits = () => {
     return freshfruitsCartItems.reduce(
       (total, item) => total + item.data.price * item.quantity,
@@ -688,33 +532,15 @@ const getCartTotaldatesdryfruit = () => {
   // It retrieves cart data from localStorage and updates the cartItems state with the parsed data.
 
   useEffect(() => {
-    const data = localStorage.getItem("cartItems");
-    if (data) {
-      setCartItems(JSON.parse(data));
-    }
+   
 
-    // minerals local storege
-    const mineralsData = localStorage.getItem("mineralsCartItems");
-    if (mineralsData) {
-      setMineralsCartItems(JSON.parse(mineralsData));
-    }
-
-    // special offer
-
-    const offerData = localStorage.getItem("offerCartItems");
-    if (offerData) {
-      setOfferCartItems(JSON.parse(offerData));
-    }
 
     // trending
     const trendingData = localStorage.getItem("trendingCartItems");
     if (trendingData) {
       setTrendingCartItems(JSON.parse(trendingData));
     }
-    const chickenmeatData = localStorage.getItem("chickenmeatCartItems");
-    if (chickenmeatData) {
-      setchickenmeatCartItems(JSON.parse(chickenmeatData));
-    }
+  
     const freshvegetablesData = localStorage.getItem("freshvegetablesCartItems");
 if (freshvegetablesData) {
   setfreshvegetablesCartItems(JSON.parse(freshvegetablesData));
@@ -727,14 +553,15 @@ const datesdryfruitData = localStorage.getItem("datesdryfruitCartItems");
 if (datesdryfruitData) {
   setdatesdryfruitCartItems(JSON.parse(datesdryfruitData));
 }
+const choppedpeeledData = localStorage.getItem("choppedpeeledCartItems");
+if (choppedpeeledData) {
+  setchoppedpeeledCartItems(JSON.parse(choppedpeeledData));
+}
 
   }, []);
 
   // This useEffect runs whenever the cartItems state changes.
   //  It updates the localStorage with the current state of the cart, converting the array to a JSON string
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
 
 
 
@@ -758,13 +585,7 @@ if (datesdryfruitData) {
 
 
 
-        // chicken-&-meat
-        chickenmeat,
-        addToCardchickenmeat,
-        chickenmeatCartItems,
-        removechickenmeatFromCart,
-        clearCartchickenmeat,
-        getCartTotalchickemeat,
+
 
 
         // freshfruits
@@ -799,8 +620,19 @@ if (datesdryfruitData) {
         addToCartDatesDryFruit,
         clearCartDatesDryFruits,
         getCartTotaldatesdryfruit,
-        removedatesdryfruitFromCart
+        removedatesdryfruitFromCart,
         
+
+
+
+        // choppedpeeled
+        choppedpeeled,
+        choppedpeeledCartItems,
+        addToCardChoppedpeeled,
+        removechoppedpeeledFromCart,
+        getCartTotalchoppedpeeled,
+        clearCartchoppedpeeled,
+       
 
 
       }}

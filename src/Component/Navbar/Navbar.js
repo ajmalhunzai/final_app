@@ -116,7 +116,7 @@ const Navbar = () => {
                         <li><Link to="/fresh-vegetables"   onClick={() => setShipment(false)}>Fresh Vegetables</Link></li>
                         <li><Link to="/frozen-snacks"   onClick={() => setShipment(false)}>Frozen Snacks</Link></li>
                         <li><Link to="/dairy"   onClick={() => setShipment(false)}>Dairy</Link></li>
-                        <li><Link to="/spices-&-sauces"   onClick={() => setShipment(false)}>Spices & Sauces</Link></li>
+                        <li><Link to="/herbs"   onClick={() => setShipment(false)}>herbs</Link></li>
                         <li><Link to="/rice-flour-&-sugar"   onClick={() => setShipment(false)}>Rice, Flour & Sugar</Link></li>
                         <li><Link to="/dates-&-dry-fruit"   onClick={() => setShipment(false)}>Dates & Dry Fruit</Link></li>
                       </ul>

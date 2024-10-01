@@ -86,9 +86,7 @@ const FeaturedProducts = () => {
                 {trending.map((person) => (
                   <li
                     key={person.email}
-                    data-aos="flip-left"
-                    data-aos-easing="ease-out-cubic"
-                    data-aos-duration="2000"
+                    
                     className="col-span-1 w-[150px] h-[20vh] relative flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow overflow-hidden"
                   >
                     <Link to={person.data.link} className="flex flex-1 flex-col relative">

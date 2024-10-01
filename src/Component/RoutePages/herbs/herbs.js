@@ -4,18 +4,17 @@ import React, { useContext } from "react";
 import { Createcart } from "../../../Context/Context";
 import { Link } from "react-router-dom";
 
-const ChoppedPeeled = () => {
+const Herbs = () => {
 
-
+  
   const {
     
     loading
 ,
-
-choppedpeeled,
-choppedpeeledCartItems,
-addToCardChoppedpeeled,
-removechoppedpeeledFromCart,
+herbs,
+addToCartherbs,
+herbsCartItems,
+removeherbsFromCart,
 
 
    
@@ -24,7 +23,7 @@ removechoppedpeeledFromCart,
 
 
   const handleRemoveFromCart = (product) => {
-    removechoppedpeeledFromCart(product);
+    removeherbsFromCart(product);
   };
   return (
     <div className=" pt-20 ">
@@ -33,7 +32,7 @@ removechoppedpeeledFromCart,
         <Link to="/" className="px-2 hover:text-[#00C851]">
           Home
         </Link>{" "}
-        / <p className="px-2"> fresh fruits</p>
+        / <p className="px-2"> Herbs</p>
       </p>
     </header>
     <div className="px-6 py-4">
@@ -42,7 +41,7 @@ removechoppedpeeledFromCart,
         className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
         {loading}
-        {choppedpeeled.map((person) => (
+        {herbs.map((person) => (
           <li
             key={person.email}
             className="col-span-1  w-[150px] h-[20vh]  relative flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow overflow-hidden"
@@ -66,13 +65,13 @@ removechoppedpeeledFromCart,
              
               
                 <div>
-                  {!choppedpeeledCartItems.find(
+                  {!herbsCartItems.find(
                     (item) => item.key === person.key
                   ) ? (
                     <div>
                       <button
                         onClick={() => {
-                          addToCardChoppedpeeled(person);
+                          addToCartherbs(person);
                         }}
                         className="text-white"
                       >
@@ -83,27 +82,27 @@ removechoppedpeeledFromCart,
                     <div className="flex items-center">
                       <button
                         onClick={() => {
-                          addToCardChoppedpeeled(person);
+                          addToCartherbs(person);
                         }}
                       >
                         +
                       </button>
                       <p className="mx-2">
                         {
-                          choppedpeeledCartItems.find(
+                          herbsCartItems.find(
                             (item) => item.key === person.key
                           ).quantity
                         }
                       </p>
                       <button
                         onClick={() => {
-                          const cartItem = choppedpeeledCartItems.find(
+                          const cartItem = herbsCartItems.find(
                             (item) => item.key === person.key
                           );
                           if (cartItem.quantity === 1) {
                             handleRemoveFromCart(person);
                           } else {
-                            removechoppedpeeledFromCart(person);
+                            removeherbsFromCart(person);
                           }
                         }}
                       >
@@ -123,4 +122,4 @@ removechoppedpeeledFromCart,
   )
 }
 
-export default ChoppedPeeled
+export default Herbs
