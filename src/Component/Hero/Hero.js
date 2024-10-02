@@ -7,7 +7,8 @@ import Carousel from "./Slider/Carousel";
 
 const Hero = () => {
   useEffect(() => {
-    AOS.init();
+    window.scrollTo(0, 0);
+  
   }, []);
   return (
     <div className="relative w-full flex justify-center items-center py-10 pt-32">

@@ -59,6 +59,12 @@ const Statestore = ({ children }) => {
       : []
   );
 
+  const [dairyproductsCartItems, setdairyproductsCartItems] = useState(
+    localStorage.getItem("dairyproductsCartItems")
+      ? JSON.parse(localStorage.getItem("dairyproductsCartItems"))
+      : []
+  );
+
   // data calling from firebase
 
 
@@ -72,6 +78,7 @@ const Statestore = ({ children }) => {
   const [herbs, setHerbs] = useState([]);
   const [datesdryfruit, setDatesdryfruit] = useState([]);
   const [choppedpeeled, setChoppedpeeled] = useState([]);
+  const [dairyproducts, setDairyproducts] = useState([]);
 
 
 
@@ -91,6 +98,7 @@ const Statestore = ({ children }) => {
         const dbreffreshvegetables = ref(db, "fresh-vegetables");
         const dbrefherbs = ref(db, "herbs");
         const dbrefdatesdryfruit = ref(db, "dates-&-dry-fruit");
+        const dbrefdairyproducts = ref(db, "dairy-products");
 
         // Parallel fetching using Promises for faster data retrieval
         await Promise.all([
@@ -140,6 +148,13 @@ const Statestore = ({ children }) => {
               datesdryfruit.push({ key: childSnapshot.key, data: childSnapshot.val() });
             });
             setDatesdryfruit(datesdryfruit);
+          }),
+          onValue(dbrefdairyproducts, (snapshot) => {
+            let dairyproducts = [];
+            snapshot.forEach((childSnapshot) => {
+              dairyproducts.push({ key: childSnapshot.key, data: childSnapshot.val() });
+            });
+            setDairyproducts(dairyproducts);
           }),
         ]);
 
@@ -296,6 +311,29 @@ const Statestore = ({ children }) => {
       JSON.stringify(updatedCartItems)
     );
   };
+  const addToCartdDairyProducts = (item) => {
+    const isItemInCart = dairyproductsCartItems.find(
+      (cartItem) => cartItem.key === item.key
+    );
+
+    let updatedCartItems;
+
+    if (isItemInCart) {
+      updatedCartItems = dairyproductsCartItems.map((cartItem) =>
+        cartItem.key === item.key
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      );
+    } else {
+      updatedCartItems = [...dairyproductsCartItems, { ...item, quantity: 1 }];
+    }
+
+    setdairyproductsCartItems(updatedCartItems);
+    localStorage.setItem(
+      "dairyproductsCartItems",
+      JSON.stringify(updatedCartItems)
+    );
+  };
 
 
 
@@ -428,6 +466,25 @@ const Statestore = ({ children }) => {
       );
     }
   };
+  const removedairyProductsFromCart = (item) => {
+    const isItemInCart = dairyproductsCartItems.find(
+      (cartItem) => cartItem.key === item.key
+    );
+  
+    if (isItemInCart.quantity === 1) {
+      setdairyproductsCartItems(
+        dairyproductsCartItems.filter((cartItem) => cartItem.key !== item.key)
+      );
+    } else {
+      setdairyproductsCartItems(
+        dairyproductsCartItems.map((cartItem) =>
+          cartItem.key === item.key
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+        )
+      );
+    }
+  };
   
   
   // Function to get total price for freshfruits
@@ -458,6 +515,13 @@ const getCartTotalherbs = () => {
 // Function to get total price for datesdryfruit
 const getCartTotaldatesdryfruit = () => {
   return datesdryfruitCartItems.reduce(
+    (total, item) => total + item.data.price * item.quantity,
+    0
+  );
+};
+// Function to get total price for datesdryfruit
+const getCartTotaldairyproducts = () => {
+  return dairyproductsCartItems.reduce(
     (total, item) => total + item.data.price * item.quantity,
     0
   );
@@ -494,6 +558,10 @@ const getCartTotaldatesdryfruit = () => {
   const clearCartDatesDryFruits = () => {
     setdatesdryfruitCartItems([]);
     localStorage.removeItem("datesdryfruitCartItems");
+  };
+  const clearCartDairyProducts = () => {
+    setdairyproductsCartItems([]);
+    localStorage.removeItem("dairyproductsCartItems");
   };
 
 
@@ -633,8 +701,14 @@ if (choppedpeeledData) {
         getCartTotalchoppedpeeled,
         clearCartchoppedpeeled,
        
-
-
+       //daryandjams 
+        dairyproductsCartItems,
+        dairyproducts,
+        addToCartdDairyProducts,
+        removedairyProductsFromCart,
+        getCartTotaldairyproducts,
+        clearCartDairyProducts
+        
       }}
     >
       {children}

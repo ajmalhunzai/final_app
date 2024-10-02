@@ -1,14 +1,18 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import { Createcart } from "../../../Context/Context";
 import { Link } from "react-router-dom";
+import Contact from "../../Contact/Contact";
 
 
 
 const DatesDryFruit = () => {
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
   
+  }, []);
   const {
     
     loading
@@ -121,6 +125,7 @@ removedatesdryfruitFromCart,
         ))}
       </ul>
     </div>
+    <Contact />
   </div>
   )
 }

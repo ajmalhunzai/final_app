@@ -1,10 +1,15 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import { Createcart } from "../../../Context/Context";
 import { Link } from "react-router-dom";
+import Contact from "../../Contact/Contact";
 
 const Herbs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  
+  }, []);
 
   
   const {
@@ -118,6 +123,7 @@ removeherbsFromCart,
         ))}
       </ul>
     </div>
+    <Contact />
   </div>
   )
 }

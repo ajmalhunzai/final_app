@@ -6,18 +6,14 @@ import { Link } from "react-router-dom";
 
 
 
-import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/20/solid'
 
-import {
-
-  GemsProduct,
-  MineralsProduct,
-} from "./ProductElement";
-import Gems from "../images/Gem-removebg-preview.png";
 
 const Product = () => {
+ 
+
   useEffect(() => {
-    AOS.init();
+    window.scrollTo(0, 0);
+  
   }, []);
 
 

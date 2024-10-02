@@ -15,6 +15,8 @@ import FreshVegetables from "./Component/RoutePages/fresh-vegetables/fresh-veget
 import Dairy from "./Component/RoutePages/dairy/dairy"
 import Herbs from "./Component/RoutePages/herbs/herbs"
 import DatesDryFruit from "./Component/RoutePages/dates-&-dry-fruit/dates-&-dry-fruit"
+ 
+import FruitDetails from "./Component/RoutePages/fresh-fruits/FruitDetails"
 
 
 
@@ -29,6 +31,7 @@ function App() {
           <Route exact path="/" element={<HomePage />} />
           <Route path="/Cart" element={<Cart />} />
           <Route exact path="/fresh-fruits" element={<FreshFruits />} />
+          <Route path="/fresh-fruits/:id" element={<FruitDetails />} />
           <Route exact path="/chopped-&-peeled" element={<ChoppedPeeled />} />
           <Route exact path="/fresh-vegetables" element={<FreshVegetables />} />
           <Route exact path="/dairy" element={<Dairy />} />
