@@ -16,26 +16,7 @@ function classNames(...classes) {
 }
 const Cart = () => {
   const {
-    // gems context functions //
-    cartItems,
-    addToCart,
-    removeFromCart,
-    clearCart,
-    getCartTotal,
-
-    // minerals context functions //
-    mineralsCartItems,
-    addToMineralsCart,
-    removemineralFromCart,
-    clearCartmineral,
-    getCartTotalmineral,
-
-    // special offer functions and node data
-    offerCartItems,
-    addToCardOffer,
-    removeofferFromCart,
-    clearCartoffer,
-    getCartTotaloffer,
+  
 
     // Trending offer functions and nodes data
     trendingCartItems,
@@ -96,19 +77,7 @@ const Cart = () => {
       },
     });
 
-  const handleRemoveFromCart = (product) => {
-    removeFromCart(product);
-    notifyRemovedFromCart(product);
-  };
-
-  const handleRemoveFromCartminearl = (product) => {
-    removemineralFromCart(product);
-    notifyRemovedFromCart(product);
-  };
-  const handleRemoveFromCartoffer = (product) => {
-    removeofferFromCart(product);
-    notifyRemovedFromCart(product);
-  };
+ 
   const handleRemoveFromCarttrend = (product) => {
     removeTrendingFromCart(product);
     notifyRemovedFromCart(product);
