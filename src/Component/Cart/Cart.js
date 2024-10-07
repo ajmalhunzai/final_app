@@ -1,24 +1,25 @@
-import React, { useContext } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable jsx-a11y/no-redundant-roles */
+import React, { useState, useEffect, useContext } from "react";
 import { Createcart } from "../../Context/Context";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
 
-import { CheckIcon,  } from '@heroicons/react/20/solid'
+import { CheckIcon, } from '@heroicons/react/20/solid'
 import Contact from "../Contact/Contact";
+import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 
 
 
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+
 const Cart = () => {
   const {
-  
 
-    // Trending offer functions and nodes data
+
+
     trendingCartItems,
     addToCardTrending,
     removeTrendingFromCart,
@@ -26,22 +27,64 @@ const Cart = () => {
     getCartTotalTrending,
 
 
-    freshfruits,
+
+
+
+
+    // freshfruits
+
     addToCardfreshfruits,
     freshfruitsCartItems,
     removefreshfruitsFromCart,
-    getCartTotalfreshfruits,
     clearCartfreshfruits,
+    getCartTotalfreshfruits,
 
 
-  
+    // freshvegetables
 
-
-    getCartTotalchickemeat,
-
+    freshvegetablesCartItems,
+    addToCartFreshVegetables,
+    clearCartFreshVegetables,
     getCartTotalfreshvegetables,
+    removefreshvegetablesFromCart,
+
+    //herbs
+
+    addToCartherbs,
+    herbsCartItems,
+    clearCartherbs,
+    getCartTotalherbs,
+    removeherbsFromCart,
+
+
+    //datesdryfruit
+
+    datesdryfruitCartItems,
+    addToCartDatesDryFruit,
+    clearCartDatesDryFruits,
     getCartTotaldatesdryfruit,
-    getCartTotalspicessauces,
+    removedatesdryfruitFromCart,
+
+
+
+
+    // choppedpeeled
+
+    choppedpeeledCartItems,
+    addToCardChoppedpeeled,
+    removechoppedpeeledFromCart,
+    getCartTotalchoppedpeeled,
+    clearCartchoppedpeeled,
+
+    //daryandjams 
+    dairyproductsCartItems,
+    addToCartdDairyProducts,
+    removedairyProductsFromCart,
+    getCartTotaldairyproducts,
+    clearCartDairyProducts
+
+
+
   } = useContext(Createcart);
 
 
@@ -77,15 +120,58 @@ const Cart = () => {
       },
     });
 
- 
-  const handleRemoveFromCarttrend = (product) => {
+
+  const handleRemoveFromCarttrend = (e, product) => {
     removeTrendingFromCart(product);
     notifyRemovedFromCart(product);
+    e.preventDefault()
   };
   const handleRemoveFromCartfruits = (product) => {
     removefreshfruitsFromCart(product);
     notifyRemovedFromCart(product);
   };
+  const handleRemoveFromCartvegetables = (product) => {
+    removefreshvegetablesFromCart(product);
+    notifyRemovedFromCart(product);
+  };
+
+
+  console.log("freshfruitsCartItems", freshfruitsCartItems)
+  console.log("trendingCartItems", trendingCartItems)
+
+
+  const [subtotal, setSubtotal] = useState(0);
+  const shipping = 5.00; // Static shipping value
+  const tax = 8.32; // Static tax value
+  const [orderTotal, setOrderTotal] = useState(0);
+
+  useEffect(() => {
+    const trending = getCartTotalTrending();
+    const freshFruits = getCartTotalfreshfruits();
+    const freshVegetables = getCartTotalfreshvegetables();
+    const herbs = getCartTotalherbs();
+    const datesDryFruit = getCartTotaldatesdryfruit();
+    const choppedPeeled = getCartTotalchoppedpeeled();
+    const dairyProducts = getCartTotaldairyproducts();
+
+    const calculatedSubtotal = trending + freshFruits + freshVegetables + herbs + datesDryFruit + choppedPeeled + dairyProducts;
+    setSubtotal(calculatedSubtotal);
+
+    // Calculate total with shipping and tax
+    setOrderTotal(calculatedSubtotal + shipping + tax);
+  }, [addToCardTrending,
+    removeTrendingFromCart, addToCardfreshfruits,
+    removefreshfruitsFromCart,
+    addToCartFreshVegetables,
+    removefreshvegetablesFromCart,
+    addToCartherbs,
+    removeherbsFromCart,
+    addToCartDatesDryFruit,
+    removedatesdryfruitFromCart,
+    addToCardChoppedpeeled,
+    removechoppedpeeledFromCart,
+    addToCartdDairyProducts,
+    removedairyProductsFromCart]);
 
 
   return (
@@ -113,14 +199,14 @@ const Cart = () => {
                     Items in your shopping cart
                   </h2>
 
-                  <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
+                  <ul role="list" className=" border-b    border-gray-200 mb-4">
                     <p> Featured Product Cart</p>
                     {trendingCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
                           <img
                             alt={item.data.trendingImageURL}
-                            src={item.data.trendingImageURL}
+                            src={item.data.trendingImagesURL}
                             className="h-24 w-24 rounded-lg object-cover object-center sm:h-32 sm:w-32"
                           />
                         </div>
@@ -129,36 +215,31 @@ const Cart = () => {
                           <div>
                             <div className="flex justify-between sm:grid sm:grid-cols-2">
                               <div className="pr-6">
-                                <h3 className="text-sm">
-                                  <a href={"#"} className="font-medium text-gray-700 hover:text-gray-800">
-                                    {item.data.trendingName}
-                                  </a>
+                                <h3 className="text-2xl font-bold text-gray-700 hover:text-gray-800">
+
+
+                                  {item.data.trendingName}
+
                                 </h3>
-                                <p className="mt-1 text-sm text-gray-500">{item.data.trendingPrice}</p>
+                                <p className="mt-1 text-sm text-gray-500">RS. {item.data.trendingPrice}</p>
 
                               </div>
 
-                              <p className="text-right text-sm font-medium text-gray-900">
-                                <p>
-                                  Total
-                                </p>
-                                <p>
-
-                                  {getCartTotalTrending()}</p>
-                              </p>
+                             
                             </div>
 
-                            <div>
+                            <div className="flex justify-between items-center w-14">
                               <button
-                                onClick={() => {
+                                onClick={(e) => {
+                                  e.preventDefault()
                                   addToCardTrending(item);
                                 }}
                               >
-                                +
+                                <CiCirclePlus size={25} className="text-[#00C851] font-bold" />
                               </button>
-                              <p>{item.quantity}</p>
+                              <p className="text-lg px-2">{item.quantity}</p>
                               <button
-                                onClick={() => {
+                                onClick={(e) => {
                                   const cartItem = trendingCartItems.find(
                                     (product) => product.key === item.key
                                   );
@@ -166,10 +247,11 @@ const Cart = () => {
                                     handleRemoveFromCarttrend(item);
                                   } else {
                                     removeTrendingFromCart(item);
+                                    e.preventDefault()
                                   }
                                 }}
                               >
-                                -
+                                <CiCircleMinus size={25} />
                               </button>
                             </div>
                           </div>
@@ -184,15 +266,27 @@ const Cart = () => {
                         </div>
                       </li>
                     ))}
+
+                    <p className="text-right text-sm font-medium text-gray-900 ">
+                      <div className="flex justify-end items-center">
+
+                        <p className="px-2 font-semibold">
+                          Total
+                        </p>
+                        <p className=" font-semibold">
+
+                          {getCartTotalTrending()}</p>
+                      </div>
+                    </p>
                   </ul>
-                  <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
+                  <ul role="list" className=" border-b    border-gray-200 mb-4">
                     <p> Fresh Fruits Cart</p>
-                    {freshfruits.map((item, productIdx) => (
+                    {freshfruitsCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
                           <img
-                            alt={item.data.image}
-                            src={item.data.name}
+                            alt={item.data.name}
+                            src={item.data.image}
                             className="h-24 w-24 rounded-lg object-cover object-center sm:h-32 sm:w-32"
                           />
                         </div>
@@ -201,47 +295,45 @@ const Cart = () => {
                           <div>
                             <div className="flex justify-between sm:grid sm:grid-cols-2">
                               <div className="pr-6">
-                                <h3 className="text-sm">
-                                  <a href={"#"} className="font-medium text-gray-700 hover:text-gray-800">
+                                <h3 className="text-2xl font-bold text-gray-700 hover:text-gray-800">
+                                  <Link to={`/fresh-fruits/${item.key}`} >
                                     {item.data.name}
-                                  </a>
+                                  </Link>
                                 </h3>
-                                <p className="mt-1 text-sm text-gray-500">{item.data.price}</p>
+                                <p className="mt-1 text-sm text-gray-500">RS. {item.data.price}</p>
 
                               </div>
 
-                              <p className="text-right text-sm font-medium text-gray-900">
-                                <p>
-                                  Total
-                                </p>
-                                <p>
+                              
 
-                                  {getCartTotalfreshfruits()}</p>
-                              </p>
+
                             </div>
 
-                            <div>
+                            <div className="flex justify-between items-center w-14">
                               <button
-                                onClick={() => {
+                                onClick={(e) => {
                                   addToCardfreshfruits(item);
+                                  e.preventDefault()
                                 }}
                               >
-                                +
+                                <CiCirclePlus size={25} className="text-[#00C851] font-bold" />
                               </button>
-                              <p>{item.quantity}</p>
+                              <p className="text-lg px-2">{item.quantity}</p>
                               <button
-                                onClick={() => {
+                                onClick={(e) => {
+                                  e.preventDefault()
                                   const cartItem = freshfruitsCartItems.find(
                                     (product) => product.key === item.key
                                   );
+
                                   if (cartItem.quantity === 1) {
-                                    removefreshfruitsFromCart(item);
+                                    handleRemoveFromCartfruits(item);
                                   } else {
                                     removefreshfruitsFromCart(item);
                                   }
                                 }}
                               >
-                                -
+                                <CiCircleMinus size={25} />
                               </button>
                             </div>
                           </div>
@@ -255,16 +347,28 @@ const Cart = () => {
                           </p>
                         </div>
                       </li>
+
                     ))}
+                    <p className="text-right text-sm font-medium text-gray-900">
+                    <div className="flex justify-end items-center">
+
+                    <p className="px-2 font-semibold">
+                          Total
+                        </p>
+                        <p className=" font-semibold">
+
+                        {getCartTotalfreshfruits()}</p>
+                    </div>
+                    </p>
                   </ul>
-                  <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
+                  <ul role="list" className="  border-b    border-gray-200  py-4">
                     <p> Fresh Vegetables Carts</p>
-                    {trendingCartItems.map((item, productIdx) => (
+                    {freshvegetablesCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
                           <img
-                            alt={item.data.trendingImageURL}
-                            src={item.data.trendingImageURL}
+                            alt={item.data.name}
+                            src={item.data.image}
                             className="h-24 w-24 rounded-lg object-cover object-center sm:h-32 sm:w-32"
                           />
                         </div>
@@ -273,12 +377,12 @@ const Cart = () => {
                           <div>
                             <div className="flex justify-between sm:grid sm:grid-cols-2">
                               <div className="pr-6">
-                                <h3 className="text-sm">
-                                  <a href={"#"} className="font-medium text-gray-700 hover:text-gray-800">
-                                    {item.data.trendingName}
-                                  </a>
+                                <h3 className="text-2xl font-bold text-gray-700 hover:text-gray-800">
+
+                                  {item.data.name}
+
                                 </h3>
-                                <p className="mt-1 text-sm text-gray-500">{item.data.trendingPrice}</p>
+                                <p className="mt-1 text-sm text-gray-500">RS. {item.data.price}</p>
 
                               </div>
 
@@ -288,32 +392,34 @@ const Cart = () => {
                                 </p>
                                 <p>
 
-                                  {getCartTotalTrending()}</p>
+                                  {getCartTotalfreshvegetables()}</p>
                               </p>
                             </div>
 
-                            <div>
+                            <div className="flex justify-between items-center w-14">
                               <button
-                                onClick={() => {
-                                  addToCardTrending(item);
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  addToCartFreshVegetables(item);
                                 }}
                               >
-                                +
+                                <CiCirclePlus size={25} className="text-[#00C851] font-bold" />
                               </button>
-                              <p>{item.quantity}</p>
+                              <p className="text-lg px-2">{item.quantity}</p>
                               <button
-                                onClick={() => {
-                                  const cartItem = trendingCartItems.find(
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  const cartItem = freshvegetablesCartItems.find(
                                     (product) => product.key === item.key
                                   );
                                   if (cartItem.quantity === 1) {
-                                    handleRemoveFromCarttrend(item);
+                                    handleRemoveFromCartvegetables(item);
                                   } else {
-                                    removeTrendingFromCart(item);
+                                    removefreshvegetablesFromCart(item);
                                   }
                                 }}
                               >
-                                -
+                                <CiCircleMinus size={25} />
                               </button>
                             </div>
                           </div>
@@ -329,14 +435,14 @@ const Cart = () => {
                       </li>
                     ))}
                   </ul>
-                  <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
+                  <ul role="list" className="    border-b    border-gray-200  mb-4">
                     <p> Chopped Peeled Carts</p>
-                    {trendingCartItems.map((item, productIdx) => (
+                    {choppedpeeledCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
                           <img
-                            alt={item.data.trendingImageURL}
-                            src={item.data.trendingImageURL}
+                            alt={item.data.name}
+                            src={item.data.image}
                             className="h-24 w-24 rounded-lg object-cover object-center sm:h-32 sm:w-32"
                           />
                         </div>
@@ -345,12 +451,12 @@ const Cart = () => {
                           <div>
                             <div className="flex justify-between sm:grid sm:grid-cols-2">
                               <div className="pr-6">
-                                <h3 className="text-sm">
-                                  <a href={"#"} className="font-medium text-gray-700 hover:text-gray-800">
-                                    {item.data.trendingName}
-                                  </a>
+                                <h3 className="text-2xl font-bold text-gray-700 hover:text-gray-800">
+
+                                  {item.data.name}
+
                                 </h3>
-                                <p className="mt-1 text-sm text-gray-500">{item.data.trendingPrice}</p>
+                                <p className="mt-1 text-sm text-gray-500">RS. {item.data.price}</p>
 
                               </div>
 
@@ -360,32 +466,34 @@ const Cart = () => {
                                 </p>
                                 <p>
 
-                                  {getCartTotalTrending()}</p>
+                                  {getCartTotalchoppedpeeled()}</p>
                               </p>
                             </div>
 
-                            <div>
+                            <div className="flex justify-between items-center w-14">
                               <button
-                                onClick={() => {
-                                  addToCardTrending(item);
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  addToCardChoppedpeeled(item);
                                 }}
                               >
-                                +
+                                <CiCirclePlus size={25} className="text-[#00C851] font-bold" />
                               </button>
-                              <p>{item.quantity}</p>
+                              <p className="text-lg px-2">{item.quantity}</p>
                               <button
-                                onClick={() => {
-                                  const cartItem = trendingCartItems.find(
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  const cartItem = choppedpeeledCartItems.find(
                                     (product) => product.key === item.key
                                   );
                                   if (cartItem.quantity === 1) {
-                                    handleRemoveFromCarttrend(item);
+                                    removechoppedpeeledFromCart(item);
                                   } else {
-                                    removeTrendingFromCart(item);
+                                    removechoppedpeeledFromCart(item);
                                   }
                                 }}
                               >
-                                -
+                                <CiCircleMinus size={25} />
                               </button>
                             </div>
                           </div>
@@ -401,14 +509,14 @@ const Cart = () => {
                       </li>
                     ))}
                   </ul>
-                  <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
+                  <ul role="list" className="    border-b    border-gray-200  mb-4">
                     <p> Dairy and Jams Carts</p>
-                    {trendingCartItems.map((item, productIdx) => (
+                    {dairyproductsCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
                           <img
-                            alt={item.data.trendingImageURL}
-                            src={item.data.trendingImageURL}
+                            alt={item.data.name}
+                            src={item.data.image}
                             className="h-24 w-24 rounded-lg object-cover object-center sm:h-32 sm:w-32"
                           />
                         </div>
@@ -417,12 +525,12 @@ const Cart = () => {
                           <div>
                             <div className="flex justify-between sm:grid sm:grid-cols-2">
                               <div className="pr-6">
-                                <h3 className="text-sm">
-                                  <a href={"#"} className="font-medium text-gray-700 hover:text-gray-800">
-                                    {item.data.trendingName}
-                                  </a>
+                                <h3 className="text-2xl font-bold text-gray-700 hover:text-gray-800">
+
+                                  {item.data.name}
+
                                 </h3>
-                                <p className="mt-1 text-sm text-gray-500">{item.data.trendingPrice}</p>
+                                <p className="mt-1 text-sm text-gray-500">RS. {item.data.price}</p>
 
                               </div>
 
@@ -432,32 +540,34 @@ const Cart = () => {
                                 </p>
                                 <p>
 
-                                  {getCartTotalTrending()}</p>
+                                  {getCartTotaldairyproducts()}</p>
                               </p>
                             </div>
 
-                            <div>
+                            <div className="flex justify-between items-center w-14">
                               <button
-                                onClick={() => {
-                                  addToCardTrending(item);
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  addToCartdDairyProducts(item);
                                 }}
                               >
-                                +
+                                <CiCirclePlus size={25} className="text-[#00C851] font-bold" />
                               </button>
-                              <p>{item.quantity}</p>
+                              <p className="text-lg px-2">{item.quantity}</p>
                               <button
-                                onClick={() => {
-                                  const cartItem = trendingCartItems.find(
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  const cartItem = dairyproductsCartItems.find(
                                     (product) => product.key === item.key
                                   );
                                   if (cartItem.quantity === 1) {
-                                    handleRemoveFromCarttrend(item);
+                                    removedairyProductsFromCart(item);
                                   } else {
-                                    removeTrendingFromCart(item);
+                                    removedairyProductsFromCart(item);
                                   }
                                 }}
                               >
-                                -
+                                <CiCircleMinus size={25} />
                               </button>
                             </div>
                           </div>
@@ -473,14 +583,14 @@ const Cart = () => {
                       </li>
                     ))}
                   </ul>
-                  <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
+                  <ul role="list" className="    border-b    border-gray-200  mb-4">
                     <p> Herbs Carts</p>
-                    {trendingCartItems.map((item, productIdx) => (
+                    {herbsCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
                           <img
-                            alt={item.data.trendingImageURL}
-                            src={item.data.trendingImageURL}
+                            alt={item.data.name}
+                            src={item.data.image}
                             className="h-24 w-24 rounded-lg object-cover object-center sm:h-32 sm:w-32"
                           />
                         </div>
@@ -489,12 +599,12 @@ const Cart = () => {
                           <div>
                             <div className="flex justify-between sm:grid sm:grid-cols-2">
                               <div className="pr-6">
-                                <h3 className="text-sm">
-                                  <a href={"#"} className="font-medium text-gray-700 hover:text-gray-800">
-                                    {item.data.trendingName}
-                                  </a>
+                                <h3 className="text-2xl font-bold text-gray-700 hover:text-gray-800">
+
+                                  {item.data.name}
+
                                 </h3>
-                                <p className="mt-1 text-sm text-gray-500">{item.data.trendingPrice}</p>
+                                <p className="mt-1 text-sm text-gray-500">RS. {item.data.price}</p>
 
                               </div>
 
@@ -504,32 +614,34 @@ const Cart = () => {
                                 </p>
                                 <p>
 
-                                  {getCartTotalTrending()}</p>
+                                  {getCartTotalherbs()}</p>
                               </p>
                             </div>
 
-                            <div>
+                            <div className="flex justify-between items-center w-14">
                               <button
-                                onClick={() => {
-                                  addToCardTrending(item);
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  addToCartherbs(item);
                                 }}
                               >
-                                +
+                                <CiCirclePlus size={25} className="text-[#00C851] font-bold" />
                               </button>
-                              <p>{item.quantity}</p>
+                              <p className="text-lg px-2">{item.quantity}</p>
                               <button
-                                onClick={() => {
-                                  const cartItem = trendingCartItems.find(
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  const cartItem = herbsCartItems.find(
                                     (product) => product.key === item.key
                                   );
                                   if (cartItem.quantity === 1) {
-                                    handleRemoveFromCarttrend(item);
+                                    removeherbsFromCart(item);
                                   } else {
-                                    removeTrendingFromCart(item);
+                                    removeherbsFromCart(item);
                                   }
                                 }}
                               >
-                                -
+                                <CiCircleMinus size={25} />
                               </button>
                             </div>
                           </div>
@@ -545,14 +657,14 @@ const Cart = () => {
                       </li>
                     ))}
                   </ul>
-                  <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
+                  <ul role="list" className="    border-b    border-gray-200  mb-4">
                     <p> Dates and Dry Fruit Carts</p>
-                    {trendingCartItems.map((item, productIdx) => (
+                    {datesdryfruitCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
                           <img
-                            alt={item.data.trendingImageURL}
-                            src={item.data.trendingImageURL}
+                            alt={item.data.name}
+                            src={item.data.image}
                             className="h-24 w-24 rounded-lg object-cover object-center sm:h-32 sm:w-32"
                           />
                         </div>
@@ -561,12 +673,12 @@ const Cart = () => {
                           <div>
                             <div className="flex justify-between sm:grid sm:grid-cols-2">
                               <div className="pr-6">
-                                <h3 className="text-sm">
-                                  <a href={"#"} className="font-medium text-gray-700 hover:text-gray-800">
-                                    {item.data.trendingName}
-                                  </a>
+                                <h3 className="text-2xl font-bold text-gray-700 hover:text-gray-800">
+
+                                  {item.data.name}
+
                                 </h3>
-                                <p className="mt-1 text-sm text-gray-500">{item.data.trendingPrice}</p>
+                                <p className="mt-1 text-sm text-gray-500">RS. {item.data.price}</p>
 
                               </div>
 
@@ -576,32 +688,34 @@ const Cart = () => {
                                 </p>
                                 <p>
 
-                                  {getCartTotalTrending()}</p>
+                                  {getCartTotaldatesdryfruit()}</p>
                               </p>
                             </div>
 
-                            <div>
+                            <div className="flex justify-between items-center w-14">
                               <button
-                                onClick={() => {
-                                  addToCardTrending(item);
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  addToCartDatesDryFruit(item);
                                 }}
                               >
-                                +
+                                <CiCirclePlus size={25} className="text-[#00C851] font-bold" />
                               </button>
-                              <p>{item.quantity}</p>
+                              <p className="text-lg px-2">{item.quantity}</p>
                               <button
-                                onClick={() => {
-                                  const cartItem = trendingCartItems.find(
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  const cartItem = datesdryfruitCartItems.find(
                                     (product) => product.key === item.key
                                   );
                                   if (cartItem.quantity === 1) {
-                                    handleRemoveFromCarttrend(item);
+                                    removedatesdryfruitFromCart(item);
                                   } else {
-                                    removeTrendingFromCart(item);
+                                    removedatesdryfruitFromCart(item);
                                   }
                                 }}
                               >
-                                -
+                                <CiCircleMinus size={25} />
                               </button>
                             </div>
                           </div>
@@ -627,22 +741,22 @@ const Cart = () => {
                     </h2>
 
                     <div className="flow-root">
-                      <dl className="-my-4 divide-y divide-gray-200 text-sm">
+                      <dl className="-my-4    text-sm">
                         <div className="flex items-center justify-between py-4">
                           <dt className="text-gray-600">Subtotal</dt>
-                          <dd className="font-medium text-gray-900">$99.00</dd>
+                          <dd className="font-medium text-gray-900">${subtotal.toFixed(2)}</dd>
                         </div>
                         <div className="flex items-center justify-between py-4">
                           <dt className="text-gray-600">Shipping</dt>
-                          <dd className="font-medium text-gray-900">$5.00</dd>
+                          <dd className="font-medium text-gray-900">${shipping.toFixed(2)}</dd>
                         </div>
                         <div className="flex items-center justify-between py-4">
                           <dt className="text-gray-600">Tax</dt>
-                          <dd className="font-medium text-gray-900">$8.32</dd>
+                          <dd className="font-medium text-gray-900">${tax.toFixed(2)}</dd>
                         </div>
                         <div className="flex items-center justify-between py-4">
                           <dt className="text-base font-medium text-gray-900">Order total</dt>
-                          <dd className="text-base font-medium text-gray-900">$112.32</dd>
+                          <dd className="text-base font-medium text-gray-900">${orderTotal.toFixed(2)}</dd>
                         </div>
                       </dl>
                     </div>
@@ -650,16 +764,20 @@ const Cart = () => {
                   <div className="mt-10">
                     <button
                       type="submit"
-                      className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                      className="w-full rounded-md border   ransparent bg-[#00C851] px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-[#00C811]"
                     >
                       Checkout
                     </button>
                   </div>
 
-                  <div className="mt-6 text-center text-sm text-gray-500">
+                  <div className="mt-6 text-center text-sm text-gray-500 py-2">
+                    <p className="py-2">
+                      OR
+                    </p>
                     <p>
-                      or
-                      <Link to={"/"} className="font-medium text-indigo-600 hover:text-indigo-500">
+
+
+                      <Link to={"/"} className="font-medium text-[#00C851] hover:text-[#00C851]">
                         Continue Shopping
                         <span aria-hidden="true"> &rarr;</span>
                       </Link>
@@ -673,9 +791,10 @@ const Cart = () => {
 
         </main>
 
+
         <Contact />
       </div>
-   
+
     </>
   );
 };
