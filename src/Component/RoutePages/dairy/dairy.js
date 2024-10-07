@@ -34,7 +34,7 @@ const Dairy = () => {
 
     <div className="flex justify-center items-center flex-col py-4">
        <div className="py-4">
-        <img src={mainimg} alt="fresh fruits" className="w-48 h-48" />
+        <img src="http://apt.farmtohome.com.pk/banners/dairyy.webp" alt="fresh fruits" className="w-48 h-48" />
        </div>
        <div>
        <p className="font-medium text-[#525252] text-[56px] leading-[67px]">Dairy and Jams</p>

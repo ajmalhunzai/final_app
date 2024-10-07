@@ -40,10 +40,19 @@ removeherbsFromCart,
         / <p className="px-2"> Herbs</p>
       </p>
     </header>
+
+    <div className="flex justify-center items-center flex-col py-4">
+       <div className="py-4">
+        <img src="https://cdn.britannica.com/75/235475-004-53BC10CE/Bunch-of-dill-on-wooden-surface-Herbs-spices.jpg" alt="fresh fruits" className="w-48 h-48 rounded-full" />
+       </div>
+       <div>
+       <p className="font-medium text-[#525252] text-[56px] leading-[67px]">Herbs</p>
+       </div>
+    </div>
     <div className="px-6 py-4">
       <ul
         role="list"
-        className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        className="grid grid-cols-1 gap-6 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9"
       >
         {loading}
         {herbs.map((person) => (

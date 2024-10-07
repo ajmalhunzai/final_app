@@ -200,7 +200,7 @@ const Cart = () => {
                   </h2>
 
                   <ul role="list" className=" border-b    border-gray-200 mb-4">
-                    <p> Featured Product Cart</p>
+                    <p className="font-semibold"> Featured Product Cart</p>
                     {trendingCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
@@ -225,7 +225,7 @@ const Cart = () => {
 
                               </div>
 
-                             
+
                             </div>
 
                             <div className="flex justify-between items-center w-14">
@@ -280,7 +280,7 @@ const Cart = () => {
                     </p>
                   </ul>
                   <ul role="list" className=" border-b    border-gray-200 mb-4">
-                    <p> Fresh Fruits Cart</p>
+                    <p className="font-semibold"> Fresh Fruits Cart</p>
                     {freshfruitsCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
@@ -304,7 +304,7 @@ const Cart = () => {
 
                               </div>
 
-                              
+
 
 
                             </div>
@@ -350,19 +350,19 @@ const Cart = () => {
 
                     ))}
                     <p className="text-right text-sm font-medium text-gray-900">
-                    <div className="flex justify-end items-center">
+                      <div className="flex justify-end items-center">
 
-                    <p className="px-2 font-semibold">
+                        <p className="px-2 font-semibold">
                           Total
                         </p>
                         <p className=" font-semibold">
 
-                        {getCartTotalfreshfruits()}</p>
-                    </div>
+                          {getCartTotalfreshfruits()}</p>
+                      </div>
                     </p>
                   </ul>
                   <ul role="list" className="  border-b    border-gray-200  py-4">
-                    <p> Fresh Vegetables Carts</p>
+                    <p className="font-semibold"> Fresh Vegetables Carts</p>
                     {freshvegetablesCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
@@ -386,14 +386,7 @@ const Cart = () => {
 
                               </div>
 
-                              <p className="text-right text-sm font-medium text-gray-900">
-                                <p>
-                                  Total
-                                </p>
-                                <p>
 
-                                  {getCartTotalfreshvegetables()}</p>
-                              </p>
                             </div>
 
                             <div className="flex justify-between items-center w-14">
@@ -434,9 +427,25 @@ const Cart = () => {
                         </div>
                       </li>
                     ))}
+
+                   
+
+                        
+                    
+                    <p className="text-right text-sm font-medium text-gray-900">
+                      <div className="flex justify-end items-center">
+
+                        <p className="px-2 font-semibold">
+                          Total
+                        </p>
+                        <p className=" font-semibold">
+                        {getCartTotalfreshvegetables()}</p>
+                         
+                      </div>
+                    </p>
                   </ul>
                   <ul role="list" className="    border-b    border-gray-200  mb-4">
-                    <p> Chopped Peeled Carts</p>
+                    <p className="font-semibold"> Chopped Peeled Carts</p>
                     {choppedpeeledCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
@@ -460,14 +469,7 @@ const Cart = () => {
 
                               </div>
 
-                              <p className="text-right text-sm font-medium text-gray-900">
-                                <p>
-                                  Total
-                                </p>
-                                <p>
-
-                                  {getCartTotalchoppedpeeled()}</p>
-                              </p>
+                             
                             </div>
 
                             <div className="flex justify-between items-center w-14">
@@ -507,10 +509,24 @@ const Cart = () => {
                           </p>
                         </div>
                       </li>
+
+                      
                     ))}
+
+<p className="text-right text-sm font-medium text-gray-900">
+                      <div className="flex justify-end items-center">
+
+                        <p className="px-2 font-semibold">
+                          Total
+                        </p>
+                        <p className=" font-semibold">
+                        {getCartTotalchoppedpeeled()}</p>
+                         
+                      </div>
+                    </p>
                   </ul>
                   <ul role="list" className="    border-b    border-gray-200  mb-4">
-                    <p> Dairy and Jams Carts</p>
+                    <p className="font-semibold"> Dairy and Jams Carts</p>
                     {dairyproductsCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
@@ -534,14 +550,7 @@ const Cart = () => {
 
                               </div>
 
-                              <p className="text-right text-sm font-medium text-gray-900">
-                                <p>
-                                  Total
-                                </p>
-                                <p>
-
-                                  {getCartTotaldairyproducts()}</p>
-                              </p>
+                              
                             </div>
 
                             <div className="flex justify-between items-center w-14">
@@ -582,9 +591,20 @@ const Cart = () => {
                         </div>
                       </li>
                     ))}
+                    <p className="text-right text-sm font-medium text-gray-900">
+                      <div className="flex justify-end items-center">
+
+                        <p className="px-2 font-semibold">
+                          Total
+                        </p>
+                        <p className=" font-semibold">
+                        {getCartTotaldairyproducts()}</p>
+                         
+                      </div>
+                    </p>
                   </ul>
                   <ul role="list" className="    border-b    border-gray-200  mb-4">
-                    <p> Herbs Carts</p>
+                    <p className="font-semibold"> Herbs Carts</p>
                     {herbsCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
@@ -608,14 +628,6 @@ const Cart = () => {
 
                               </div>
 
-                              <p className="text-right text-sm font-medium text-gray-900">
-                                <p>
-                                  Total
-                                </p>
-                                <p>
-
-                                  {getCartTotalherbs()}</p>
-                              </p>
                             </div>
 
                             <div className="flex justify-between items-center w-14">
@@ -656,9 +668,20 @@ const Cart = () => {
                         </div>
                       </li>
                     ))}
+                    <p className="text-right text-sm font-medium text-gray-900">
+                      <div className="flex justify-end items-center">
+
+                        <p className="px-2 font-semibold">
+                          Total
+                        </p>
+                        <p className=" font-semibold">
+                        {getCartTotalherbs()}</p>
+                         
+                      </div>
+                    </p>
                   </ul>
                   <ul role="list" className="    border-b    border-gray-200  mb-4">
-                    <p> Dates and Dry Fruit Carts</p>
+                    <p className="font-semibold"> Dates and Dry Fruit Carts</p>
                     {datesdryfruitCartItems.map((item, productIdx) => (
                       <li key={item.id} className="flex py-6 sm:py-10">
                         <div className="flex-shrink-0">
@@ -682,14 +705,6 @@ const Cart = () => {
 
                               </div>
 
-                              <p className="text-right text-sm font-medium text-gray-900">
-                                <p>
-                                  Total
-                                </p>
-                                <p>
-
-                                  {getCartTotaldatesdryfruit()}</p>
-                              </p>
                             </div>
 
                             <div className="flex justify-between items-center w-14">
@@ -730,6 +745,18 @@ const Cart = () => {
                         </div>
                       </li>
                     ))}
+
+<p className="text-right text-sm font-medium text-gray-900">
+                      <div className="flex justify-end items-center">
+
+                        <p className="px-2 font-semibold">
+                          Total
+                        </p>
+                        <p className=" font-semibold">
+                        {getCartTotaldatesdryfruit()}</p>
+                         
+                      </div>
+                    </p>
                   </ul>
                 </section>
 
@@ -744,31 +771,36 @@ const Cart = () => {
                       <dl className="-my-4    text-sm">
                         <div className="flex items-center justify-between py-4">
                           <dt className="text-gray-600">Subtotal</dt>
-                          <dd className="font-medium text-gray-900">${subtotal.toFixed(2)}</dd>
+                          <dd className="font-medium text-gray-900">Rs. {subtotal.toFixed(2)}</dd>
                         </div>
                         <div className="flex items-center justify-between py-4">
                           <dt className="text-gray-600">Shipping</dt>
-                          <dd className="font-medium text-gray-900">${shipping.toFixed(2)}</dd>
+                          <dd className="font-medium text-gray-900">Rs. {shipping.toFixed(2)}</dd>
                         </div>
                         <div className="flex items-center justify-between py-4">
                           <dt className="text-gray-600">Tax</dt>
-                          <dd className="font-medium text-gray-900">${tax.toFixed(2)}</dd>
+                          <dd className="font-medium text-gray-900">Rs. {tax.toFixed(2)}</dd>
                         </div>
                         <div className="flex items-center justify-between py-4">
                           <dt className="text-base font-medium text-gray-900">Order total</dt>
-                          <dd className="text-base font-medium text-gray-900">${orderTotal.toFixed(2)}</dd>
+                          <dd className="text-base font-medium text-gray-900">Rs. {orderTotal.toFixed(2)}</dd>
                         </div>
                       </dl>
                     </div>
                   </div>
                   <div className="mt-10">
-                    <button
-                      type="submit"
-                      className="w-full rounded-md border   ransparent bg-[#00C851] px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-[#00C811]"
+                    <Link to ="/check-out"
+                   
+                      className="w-[100%] flex  text-center justify-center items-center rounded-md border   ransparent bg-[#00C851] px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-[#00C811]"
                     >
+                      <p className=" font-medium text-lg">
+
                       Checkout
-                    </button>
+                      </p>
+
+                    </Link>
                   </div>
+                  
 
                   <div className="mt-6 text-center text-sm text-gray-500 py-2">
                     <p className="py-2">

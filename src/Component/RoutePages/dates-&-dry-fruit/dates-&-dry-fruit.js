@@ -39,13 +39,24 @@ removedatesdryfruitFromCart,
         <Link to="/" className="px-2 hover:text-[#00C851]">
           Home
         </Link>{" "}
-        / <p className="px-2"> fresh fruits</p>
+        / <p className="px-2"> Dates & Dry Fruit</p>
       </p>
+
+      
     </header>
+
+    <div className="flex justify-center items-center flex-col py-4">
+       <div className="py-4">
+        <img src="https://apt.farmtohome.com.pk/banners/dry fruits.webp" alt="fresh fruits" className="w-48 h-48" />
+       </div>
+       <div>
+       <p className="font-medium text-[#525252] text-[56px] leading-[67px]">Dates & Dry Fruit</p>
+       </div>
+    </div>
     <div className="px-6 py-4">
       <ul
         role="list"
-        className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        className="grid grid-cols-1 gap-6 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9"
       >
         {loading}
         {datesdryfruit.map((person) => (
