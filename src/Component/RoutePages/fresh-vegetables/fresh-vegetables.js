@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Contact from "../../Contact/Contact";
 
 import mainimg from "../../../images/fruits.webp"
+import { CiCirclePlus } from "react-icons/ci";
 const FreshVegetables = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -66,63 +67,56 @@ const FreshVegetables = () => {
               />
 
               <div className="relative z-20 bg-black bg-opacity-50 w-[150px] h-[20vh]  p-4">
-
-                <div>
-
-                <p className="text-sm font-medium text-white">
-                  {person.data.name}
-                </p>
-                <p className="text-sm text-white">{person.data.price}</p>
-                </div>
+                <div className="flex flex-col justify-end items-start h-full">
+              <p className="text-lg font-medium text-white leading-[26px]">
+                {person.data.name.split(" ").slice(0, 2).join(" ")}
+              </p>
+              <p className="text-sm font-medium text-white">RS {person.data.price}</p>
+            </div>
              
-              
-                <div>
-                  {!freshvegetablesCartItems.find(
+                <div className="absolute right-2 top-2">
+                {!freshvegetablesCartItems.find(
                     (item) => item.key === person.key
-                  ) ? (
-                    <div>
-                      <button
-                        onClick={() => {
+                  ) ?  (
+                  <button onClick={() => addToCartFreshVegetables(person)} className="text-white">
+                    <CiCirclePlus
+                      size={35}
+                      className="text-[#E66C42] rounded-full hover:bg-[#E66C42] hover:text-white"
+                    />
+                  </button>
+                ) : (
+                  <div className="flex items-center">
+                    <button className="text-white font-semibold"  onClick={() => {
                           addToCartFreshVegetables(person);
-                        }}
-                        className="text-white"
-                      >
-                        Add to cart
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="flex items-center">
-                      <button
-                        onClick={() => {
-                          addToCartFreshVegetables(person);
-                        }}
-                      >
-                        +
-                      </button>
-                      <p className="mx-2">
-                        {
+                        }}>
+                      +
+                    </button>
+                    <p className="mx-2 text-white font-semibold">
+                    {
                           freshvegetablesCartItems.find(
                             (item) => item.key === person.key
                           ).quantity
                         }
-                      </p>
-                      <button
-                        onClick={() => {
-                          const cartItem = freshvegetablesCartItems.find(
-                            (item) => item.key === person.key
-                          );
-                          if (cartItem.quantity === 1) {
-                            handleRemoveFromCart(person);
-                          } else {
-                            removefreshvegetablesFromCart(person);
-                          }
-                        }}
-                      >
-                        -
-                      </button>
-                    </div>
-                  )}
-                </div>
+                    </p>
+                    <button
+                      className="text-white font-semibold"
+                      onClick={() => {
+                        const cartItem = freshvegetablesCartItems.find(
+                          (item) => item.key === person.key
+                        );
+                        if (cartItem.quantity === 1) {
+                          handleRemoveFromCart(person);
+                        } else {
+                          removefreshvegetablesFromCart(person);
+                        }
+                      }}
+                    >
+                      -
+                    </button>
+                  </div>
+                )}
+              </div>
+              
           
               </div>
             </div>

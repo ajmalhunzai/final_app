@@ -117,7 +117,7 @@ const Statestore = ({ children }) => {
               choppedpeeled.push({ key: childSnapshot.key, data: childSnapshot.val() });
             });
 
-            console.log("choppedpeeled",choppedpeeled)
+           
             setChoppedpeeled(choppedpeeled);
           }),
           
@@ -212,6 +212,7 @@ const Statestore = ({ children }) => {
     }
     localStorage.setItem("choppedpeeledCartItems", JSON.stringify(choppedpeeledCartItems));
   };
+
 
   
   const addToCardfreshfruits = (item) => {
@@ -544,7 +545,7 @@ const getCartTotaldairyproducts = () => {
   };
   const clearCartchoppedpeeled = () => {
     setchoppedpeeledCartItems([]);
-    localStorage.removeItem("freshfruitsCartItems");
+    localStorage.removeItem("choppedpeeledCartItems");
   };
 
   const clearCartFreshVegetables = () => {

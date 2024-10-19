@@ -14,7 +14,7 @@ const firebaseConfig = {
 
   apiKey: "AIzaSyCa6GTBzP8c8ET1ZyU0K8mk37Q7Q792RuQ",
   authDomain: "finalapp-8cad7.firebaseapp.com",
-   databaseURL: "https://finalapp-8cad7-default-rtdb.firebaseio.com/",
+ databaseURL: "https://finalapp-8cad7-default-rtdb.firebaseio.com/",
   projectId: "finalapp-8cad7",
   storageBucket: "finalapp-8cad7.appspot.com",
   messagingSenderId: "62232118495",

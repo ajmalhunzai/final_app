@@ -173,7 +173,20 @@ const Cart = () => {
     addToCartdDairyProducts,
     removedairyProductsFromCart]);
 
+    const clearAllCarts = () => {
+      clearCartTrending();
+      clearCartfreshfruits();
+      clearCartFreshVegetables();
+      clearCartherbs();
+      clearCartDatesDryFruits();
+      clearCartchoppedpeeled();
+      clearCartDairyProducts();
+    };
 
+
+   
+ 
+    
   return (
     <>
       <div className="pt-20">
@@ -187,7 +200,7 @@ const Cart = () => {
 
       <div className="bg-white">
 
-
+     
         <main>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-4xl pt-16">
@@ -759,6 +772,7 @@ const Cart = () => {
                     </p>
                   </ul>
                 </section>
+                <button className=" float-end" onClick={clearAllCarts}>Clear All Cart</button>
 
                 {/* Order summary */}
                 <section aria-labelledby="summary-heading" className="mt-10 sm:ml-32 sm:pl-6">

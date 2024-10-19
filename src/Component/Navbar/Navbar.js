@@ -13,28 +13,45 @@ import logo from "../../images/logo.png"
 
 const Navbar = () => {
   const {
- 
+
 
     // Trending offer functions and nodes data
     trendingCartItems,
     freshfruitsCartItems,
- 
-   
+
+
+
+
+    freshvegetablesCartItems,
+    herbsCartItems,
+    datesdryfruitCartItems,
+    choppedpeeledCartItems,
+    dairyproductsCartItems,
   } = useContext(Createcart);
 
-  
+
   const trending = trendingCartItems.length;
   const frsihfruti = freshfruitsCartItems.length;
-  const totalCart =  trending+frsihfruti;
+  const v = freshvegetablesCartItems.length
+  const v1 = herbsCartItems.length
+  const v2 = datesdryfruitCartItems.length
+  const v3 = choppedpeeledCartItems.length
+  const v4 = dairyproductsCartItems.length
+
+
+  const totalCart = trending + frsihfruti + v + v1 + v2 + v3 + v4;
 
 
 
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
 
 
   const [shipmentOPen, setShipment] = useState(false);
 
-  
-// console.log("one",one)
+
+  // console.log("one",one)
 
   return (
     <>
@@ -108,18 +125,67 @@ const Navbar = () => {
 
                   <div className="px-6 py-4">
                     <div className="-mx-4 mt-8 sm:-mx-0">
+                     
+
                       <ul>
-                        
+                        <li>
+                          <Link
+                            to="/fresh-fruits"
+                            onClick={() => setShipment(false)}
+                            className="flex gap-x-3 rounded-md p-2 text-lg font-medium leading-6 text-black hover:bg-[#00C851] hover:text-white transition duration-200 ease-in-out"
+                          >
+                            Fresh Fruits
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/chopped-&-peeled"
+                            onClick={() => setShipment(false)}
+                            className="flex gap-x-3 rounded-md p-2 text-lg font-medium leading-6 text-black hover:bg-[#00C851] hover:text-white transition duration-200 ease-in-out"
+                          >
+                            Chopped & Peeled
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/fresh-vegetables"
+                            onClick={() => setShipment(false)}
+                            className="flex gap-x-3 rounded-md p-2 text-lg font-medium leading-6 text-black hover:bg-[#00C851] hover:text-white transition duration-200 ease-in-out"
+                          >
+                            Fresh Vegetables
+                          </Link>
+                        </li>
+                       
+                        <li>
+                          <Link
+                            to="/dairy"
+                            onClick={() => setShipment(false)}
+                            className="flex gap-x-3 rounded-md p-2 text-lg font-medium leading-6 text-black hover:bg-[#00C851] hover:text-white transition duration-200 ease-in-out"
+                          >
+                            Dairy
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/herbs"
+                            onClick={() => setShipment(false)}
+                            className="flex gap-x-3 rounded-md p-2 text-lg font-medium leading-6 text-black hover:bg-[#00C851] hover:text-white transition duration-200 ease-in-out"
+                          >
+                            Herbs
+                          </Link>
+                        </li>
                       
-                        <li><Link to="/fresh-fruits"   onClick={() => setShipment(false)}>Fresh Fruits</Link></li>
-                        <li><Link to="/chopped-&-peeled"   onClick={() => setShipment(false)}>Chopped & Peeled</Link></li>
-                        <li><Link to="/fresh-vegetables"   onClick={() => setShipment(false)}>Fresh Vegetables</Link></li>
-                        <li><Link to="/frozen-snacks"   onClick={() => setShipment(false)}>Frozen Snacks</Link></li>
-                        <li><Link to="/dairy"   onClick={() => setShipment(false)}>Dairy</Link></li>
-                        <li><Link to="/herbs"   onClick={() => setShipment(false)}>herbs</Link></li>
-                        <li><Link to="/rice-flour-&-sugar"   onClick={() => setShipment(false)}>Rice, Flour & Sugar</Link></li>
-                        <li><Link to="/dates-&-dry-fruit"   onClick={() => setShipment(false)}>Dates & Dry Fruit</Link></li>
+                        <li>
+                          <Link
+                            to="/dates-&-dry-fruit"
+                            onClick={() => setShipment(false)}
+                            className="flex gap-x-3 rounded-md p-2 text-lg font-medium leading-6 text-black hover:bg-[#00C851] hover:text-white transition duration-200 ease-in-out"
+                          >
+                            Dates & Dry Fruit
+                          </Link>
+                        </li>
                       </ul>
+
                     </div>
                   </div>
                 </div>
