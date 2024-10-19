@@ -121,18 +121,45 @@ const Cart = () => {
     });
 
 
-  const handleRemoveFromCarttrend = (e, product) => {
-    removeTrendingFromCart(product);
-    notifyRemovedFromCart(product);
-    e.preventDefault()
+  const handleRemoveFromCarttrend = ( item) => {
+
+    removeTrendingFromCart(item);
+    
+
+
   };
   const handleRemoveFromCartfruits = (product) => {
+  
     removefreshfruitsFromCart(product);
-    notifyRemovedFromCart(product);
+
+
   };
   const handleRemoveFromCartvegetables = (product) => {
     removefreshvegetablesFromCart(product);
-    notifyRemovedFromCart(product);
+    console.log("product",product)
+    
+  };
+  const handleremovechoppedpeeledFromCart = (product) => {
+  
+    removechoppedpeeledFromCart(product);
+
+    
+  };
+  const handleremovedairyProductsFromCart = (product) => {
+
+    removedairyProductsFromCart(product);
+    
+ 
+  };
+  const handleremoveherbsFromCart = (product) => {
+
+    removeherbsFromCart(product);
+ 
+  };
+  const handleremovedatesdryfruitFromCart = (product) => {
+    
+    removedatesdryfruitFromCart(product);
+  
   };
 
 
@@ -173,20 +200,20 @@ const Cart = () => {
     addToCartdDairyProducts,
     removedairyProductsFromCart]);
 
-    const clearAllCarts = () => {
-      clearCartTrending();
-      clearCartfreshfruits();
-      clearCartFreshVegetables();
-      clearCartherbs();
-      clearCartDatesDryFruits();
-      clearCartchoppedpeeled();
-      clearCartDairyProducts();
-    };
+  const clearAllCarts = () => {
+    clearCartTrending();
+    clearCartfreshfruits();
+    clearCartFreshVegetables();
+    clearCartherbs();
+    clearCartDatesDryFruits();
+    clearCartchoppedpeeled();
+    clearCartDairyProducts();
+  };
 
 
-   
- 
-    
+
+
+
   return (
     <>
       <div className="pt-20">
@@ -200,7 +227,7 @@ const Cart = () => {
 
       <div className="bg-white">
 
-     
+
         <main>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-4xl pt-16">
@@ -441,10 +468,10 @@ const Cart = () => {
                       </li>
                     ))}
 
-                   
 
-                        
-                    
+
+
+
                     <p className="text-right text-sm font-medium text-gray-900">
                       <div className="flex justify-end items-center">
 
@@ -452,8 +479,8 @@ const Cart = () => {
                           Total
                         </p>
                         <p className=" font-semibold">
-                        {getCartTotalfreshvegetables()}</p>
-                         
+                          {getCartTotalfreshvegetables()}</p>
+
                       </div>
                     </p>
                   </ul>
@@ -482,7 +509,7 @@ const Cart = () => {
 
                               </div>
 
-                             
+
                             </div>
 
                             <div className="flex justify-between items-center w-14">
@@ -502,7 +529,7 @@ const Cart = () => {
                                     (product) => product.key === item.key
                                   );
                                   if (cartItem.quantity === 1) {
-                                    removechoppedpeeledFromCart(item);
+                                    handleremovechoppedpeeledFromCart(item);
                                   } else {
                                     removechoppedpeeledFromCart(item);
                                   }
@@ -523,18 +550,18 @@ const Cart = () => {
                         </div>
                       </li>
 
-                      
+
                     ))}
 
-<p className="text-right text-sm font-medium text-gray-900">
+                    <p className="text-right text-sm font-medium text-gray-900">
                       <div className="flex justify-end items-center">
 
                         <p className="px-2 font-semibold">
                           Total
                         </p>
                         <p className=" font-semibold">
-                        {getCartTotalchoppedpeeled()}</p>
-                         
+                          {getCartTotalchoppedpeeled()}</p>
+
                       </div>
                     </p>
                   </ul>
@@ -563,7 +590,7 @@ const Cart = () => {
 
                               </div>
 
-                              
+
                             </div>
 
                             <div className="flex justify-between items-center w-14">
@@ -583,7 +610,7 @@ const Cart = () => {
                                     (product) => product.key === item.key
                                   );
                                   if (cartItem.quantity === 1) {
-                                    removedairyProductsFromCart(item);
+                                    handleremovedairyProductsFromCart(item);
                                   } else {
                                     removedairyProductsFromCart(item);
                                   }
@@ -611,8 +638,8 @@ const Cart = () => {
                           Total
                         </p>
                         <p className=" font-semibold">
-                        {getCartTotaldairyproducts()}</p>
-                         
+                          {getCartTotaldairyproducts()}</p>
+
                       </div>
                     </p>
                   </ul>
@@ -660,7 +687,7 @@ const Cart = () => {
                                     (product) => product.key === item.key
                                   );
                                   if (cartItem.quantity === 1) {
-                                    removeherbsFromCart(item);
+                                    handleremoveherbsFromCart(item);
                                   } else {
                                     removeherbsFromCart(item);
                                   }
@@ -688,8 +715,8 @@ const Cart = () => {
                           Total
                         </p>
                         <p className=" font-semibold">
-                        {getCartTotalherbs()}</p>
-                         
+                          {getCartTotalherbs()}</p>
+
                       </div>
                     </p>
                   </ul>
@@ -737,7 +764,7 @@ const Cart = () => {
                                     (product) => product.key === item.key
                                   );
                                   if (cartItem.quantity === 1) {
-                                    removedatesdryfruitFromCart(item);
+                                    handleremovedatesdryfruitFromCart(item);
                                   } else {
                                     removedatesdryfruitFromCart(item);
                                   }
@@ -759,15 +786,15 @@ const Cart = () => {
                       </li>
                     ))}
 
-<p className="text-right text-sm font-medium text-gray-900">
+                    <p className="text-right text-sm font-medium text-gray-900">
                       <div className="flex justify-end items-center">
 
                         <p className="px-2 font-semibold">
                           Total
                         </p>
                         <p className=" font-semibold">
-                        {getCartTotaldatesdryfruit()}</p>
-                         
+                          {getCartTotaldatesdryfruit()}</p>
+
                       </div>
                     </p>
                   </ul>
@@ -803,18 +830,18 @@ const Cart = () => {
                     </div>
                   </div>
                   <div className="mt-10">
-                    <Link to ="/check-out"
-                   
+                    <Link to="/check-out"
+
                       className="w-[100%] flex  text-center justify-center items-center rounded-md border   ransparent bg-[#00C851] px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-[#00C811]"
                     >
                       <p className=" font-medium text-lg">
 
-                      Checkout
+                        Checkout
                       </p>
 
                     </Link>
                   </div>
-                  
+
 
                   <div className="mt-6 text-center text-sm text-gray-500 py-2">
                     <p className="py-2">
